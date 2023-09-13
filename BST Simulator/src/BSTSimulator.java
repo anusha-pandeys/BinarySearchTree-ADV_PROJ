@@ -5,10 +5,13 @@
  *
  */
 
-// hiiiii
 public class BSTSimulator {
 	public static void main() {
-		
+		// set up BST here
+		// generate STDraw window
 	}
+	
+	
 
 }
+
