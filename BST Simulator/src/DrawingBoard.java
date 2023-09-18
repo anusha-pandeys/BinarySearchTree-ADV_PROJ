@@ -15,8 +15,6 @@ public class DrawingBoard {
 		StdDraw.text(0.5, 1, welcome);
 		
 		// "add node" button
-		StdDraw.rectangle(0, 0, 0.2, 0.1);
-		String addNode = "Add node";
-		StdDraw.text(0, 0, addNode);
+		Button addNode = new Button(0, 0, 0.4, 0.2, "Add node");
 	}
 }
