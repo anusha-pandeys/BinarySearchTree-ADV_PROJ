@@ -15,6 +15,7 @@ public class DrawingBoard {
 		StdDraw.text(0.5, 1, welcome);
 		
 		// "add node" button
-		Button addNode = new Button(0, 0, 0.4, 0.2, "Add node");
+		Button addNode = new Button(0, 0, 0.4, 0.2, "Add node", true);
+		
 	}
 }

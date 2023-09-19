@@ -5,16 +5,20 @@ public class Button {
 	private double y;
 	private double width;
 	private double height;
-	private String text;
+	private final int ENTER = 10;
 	
-	public Button (double x, double y, double width, double height, String text) {
+	public Button (double x, double y, double width, double height, String text, boolean inputButton) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		this.text = text;
 		StdDraw.rectangle(x, y, width/2, height/2);
 		StdDraw.text(x, y, text);
+		String data = "";
+		if (inputButton) {
+			data = waitForData();
+		}
+		System.out.println(data);
 	}
 	
 	private boolean isInArea(double mouseX, double mouseY) {
@@ -23,5 +27,21 @@ public class Button {
 	
 	public boolean isClicked() {
 		return StdDraw.isMousePressed() && isInArea(StdDraw.mouseX(), StdDraw.mouseY());
+	}
+	
+	public String waitForData() {
+		while (true) {
+			if (isClicked()) {	// if the button is pressed (to input data)
+				String input = "";
+				while (!StdDraw.isKeyPressed(ENTER)) {	// wait until enter key is pressed
+					// make a blank box for where the input text will go
+					
+				}
+				while (StdDraw.hasNextKeyTyped()) {	// while there are more keys to process
+					input += StdDraw.nextKeyTyped();
+				}
+				return input;
+			}
+		}
 	}
 }
