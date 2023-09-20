@@ -13,8 +13,20 @@ public class Button {
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		StdDraw.rectangle(x, y, width/2, height/2);
+		
+		StdDraw.setPenColor(StdDraw.WHITE);
+		StdDraw.filledRectangle(x, y, width/2, height/2);
+		
+		StdDraw.setPenColor(StdDraw.BLACK);
 		StdDraw.text(x, y, text);
+	}
+	
+	public void changeText(String newText) {
+		StdDraw.setPenColor(StdDraw.WHITE);
+		StdDraw.filledRectangle(x, y, width/2, height/2);
+		
+		StdDraw.setPenColor(StdDraw.BLACK);
+		StdDraw.text(x, y, newText);
 	}
 	
 	// returns true if the given mouse x and y coordinates are within the area of the button
