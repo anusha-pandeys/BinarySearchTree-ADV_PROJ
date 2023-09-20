@@ -8,6 +8,7 @@
 public class BSTSimulator {
 	public static void main(String[] args) {
 		// set up BST here
+		
 		// generate STDraw window
 		DrawingBoard.createFrame();
 		DrawingBoard.startPage();
