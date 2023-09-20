@@ -1,24 +1,16 @@
-public class BSTMethods {
-	
-	class Node {
-		String key;
-		Node left;
-		Node right;
+public class BST {
 		
-		public Node () {
-			key = null;
-			left = null;
-			right = null;
-        }
-        public Node (String s) {
-        	key = s;
-        }
-	}
-	
 	private Node root;
+	private BSTAnimations animations;
+	
+	public BST () {
+		root = new Node();
+		animations = new BSTAnimations();
+	}
 	
 	public void insert(String s) {
 		if (s == "") {
+			animations.print("ERROR");
 			return;
 		}
 		insertHelper (s, root);
@@ -27,25 +19,25 @@ public class BSTMethods {
 	private void insertHelper(String s, Node cur) {
 		if (cur == null) {
 			cur = new Node (s);
-			//draw new node there
+			//DRAW NEW NODE
 		} else if (cur.key.equals(s)) {
-			//ANIMATE EQUAL
+			animations.print("NO DUPLICATES");
 		} else if (cur.key.compareTo(s) > 0) {
 			if (cur.right == null) {
 				cur.right = new Node (s);
-				//draw new node there
+				//DRAW NEW NODE
 			} else {
 				insertHelper (s, cur.right);
-				//print going right
+				animations.print("GOING RIGHT");
 			}
 			
 		} else {
 			if (cur.left == null) {
 				cur.left = new Node (s);
-				//draw new node there
+				//DRAW NEW NODE
 			} else {
 				insertHelper (s, cur.left);
-				//print going left
+				animations.print("GOING LEFT");
 			}
 		}
 		
@@ -53,6 +45,7 @@ public class BSTMethods {
 	
 	public void delete (String s) {
 		if (s == "") {
+			animations.print("ERROR");
 			return;
 		}
 		Node toDelete = findNode (s, root);
@@ -62,27 +55,36 @@ public class BSTMethods {
 	private Node findNode(String key, Node cur) {
 		
 		if (cur == null) {
-			//print not found
+			animations.print("NOT FOUND");
 			return null;
 		} else if (key.compareTo(cur.key) < 0) {
+			animations.print("GOING LEFT");
 			return findNode (key, cur.left);
 		} else if (key.compareTo(cur.key) > 0) {
+			animations.print("GOING RIGHT");
 			return findNode (key, cur.right);
 		} else {
+			animations.print("FOUND IT!");
 			return cur;
 		}
 	}
 	
 	private void hibbardDeletion (Node cur) {
-		
+		if (cur == null) {
+			return;
+		}
 		if (cur.left == null && cur.right == null) {
+			//DELETE
 			cur = null;
 		} else if (cur.left == null) {
+			//DEL AND REPLACE
 			cur = cur.right;
 		} else if (cur.right == null) {
+			//DEL AND REPLACE
 			cur = cur.left;
 		}
 		
+		//DEL AND REPLACE
 		Node min = cur.right;
 		while (min.left != null) {
 			min = min.left;
