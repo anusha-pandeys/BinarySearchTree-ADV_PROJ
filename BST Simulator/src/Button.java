@@ -14,7 +14,7 @@ public class Button {
 		this.width = width;
 		this.height = height;
 		
-		StdDraw.setPenColor(StdDraw.WHITE);
+		StdDraw.setPenColor(StdDraw.GRAY);
 		StdDraw.filledRectangle(x, y, width/2, height/2);
 		
 		StdDraw.setPenColor(StdDraw.BLACK);
