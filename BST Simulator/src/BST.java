@@ -125,6 +125,7 @@ public class BST {
 			animations.drawLine(parent, cur);
 			
 		}	
+
 	}
 
 }
