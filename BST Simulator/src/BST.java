@@ -2,54 +2,69 @@ public class BST {
 		
 	private Node root;
 	private BSTAnimations animations;
+	private final double canvasWidth = 1.0;
+	private final int level = 0;
 	
 	public BST () {
-		root = new Node();
 		animations = new BSTAnimations();
 	}
 	
-	public void insert(String s) {
+	public boolean insert(String s) {
 		if (s == "") {
 			animations.print("ERROR");
-			return;
+		} else {
+			insertHelper (s, root, null);
 		}
-		insertHelper (s, root);
+		return true;
 	}
 	
-	private void insertHelper(String s, Node cur) {
-		if (cur == null) {
-			cur = new Node (s);
-			//DRAW NEW NODE
+	private void insertHelper(String s, Node cur, Node parent) {
+		if (root == null) {
+			root = new Node();
+			root.key = s;
+			animations.drawNode(root);
 		} else if (cur.key.equals(s)) {
 			animations.print("NO DUPLICATES");
-		} else if (cur.key.compareTo(s) > 0) {
+		} else if (cur.key.compareTo(s) < 0) {
+			animations.print("GOING RIGHT");
 			if (cur.right == null) {
 				cur.right = new Node (s);
-				//DRAW NEW NODE
+				cur.right.depth ++;
+				cur.right.x = cur.x + 0.5 / Math.pow(2, cur.right.depth);
+				cur.right.y = cur.y - 0.15;
+				cur.right.prev = cur;
+				animations.drawNode(cur.right);
+				animations.drawLine (cur, cur.right);
 			} else {
-				insertHelper (s, cur.right);
-				animations.print("GOING RIGHT");
+				insertHelper (s, cur.right, cur);
 			}
 			
 		} else {
+			animations.print("GOING LEFT");
 			if (cur.left == null) {
 				cur.left = new Node (s);
-				//DRAW NEW NODE
+				cur.left.depth ++;
+				cur.left.x = cur.x - 0.5 / Math.pow(2, cur.left.depth);
+				cur.left.y = cur.y - 0.15;
+				cur.left.prev = parent;
+				animations.drawNode(cur.left);
+				animations.drawLine (cur, cur.left);
 			} else {
-				insertHelper (s, cur.left);
-				animations.print("GOING LEFT");
+				insertHelper (s, cur.left, cur);
 			}
 		}
 		
 	}
 	
-	public void delete (String s) {
-		if (s == "") {
+	public boolean delete (String s) {
+		if (s == null) {
 			animations.print("ERROR");
-			return;
+			return true;
 		}
 		Node toDelete = findNode (s, root);
-		hibbardDeletion (toDelete);
+		hibbardDeletion (toDelete, toDelete.prev);
+		
+		return true;
 	}
 	
 	private Node findNode(String key, Node cur) {
@@ -69,28 +84,47 @@ public class BST {
 		}
 	}
 	
-	private void hibbardDeletion (Node cur) {
+	private void hibbardDeletion (Node cur, Node parent) {
 		if (cur == null) {
 			return;
 		}
 		if (cur.left == null && cur.right == null) {
-			//DELETE
-			cur = null;
+			animations.deleteNode (parent, cur);
+			if (parent != null) {
+				if (parent.left == cur) {
+					parent.left = null;
+				} else {
+					parent.right = null;
+				}
+			}
+			if (root == cur) {
+				root = null;
+			} 
+			
 		} else if (cur.left == null) {
-			//DEL AND REPLACE
+			animations.deleteNode (parent, cur);
 			cur = cur.right;
+			animations.drawLine (parent, cur);
 		} else if (cur.right == null) {
-			//DEL AND REPLACE
+			animations.deleteNode (parent, cur);
 			cur = cur.left;
-		}
-		
-		//DEL AND REPLACE
-		Node min = cur.right;
-		while (min.left != null) {
-			min = min.left;
-		}
-		cur.key = min.key;
-		min = null;		
+			animations.drawLine (parent, cur);
+		} else {
+			animations.deleteNode (parent, cur);
+			Node min = cur.right;
+			Node minParent = cur;
+			while (min.left != null) {
+				minParent = min;
+				min = min.left;
+			}
+			cur.key = min.key;
+			
+			hibbardDeletion(min, minParent);
+			
+			animations.drawNode (cur);
+			animations.drawLine(parent, cur);
+			
+		}	
 	}
 
 }
