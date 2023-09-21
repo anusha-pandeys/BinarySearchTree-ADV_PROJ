@@ -40,7 +40,7 @@ public class BST {
 			}
 			
 		} else {
-			animations.print("GOING LEFT");
+			animations.print("GOING LEFT"); 
 			if (cur.left == null) {
 				cur.left = new Node (s);
 				cur.left.depth ++;
