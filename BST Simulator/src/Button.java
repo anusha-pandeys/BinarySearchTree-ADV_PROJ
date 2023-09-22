@@ -54,12 +54,8 @@ public class Button {
 				}
 				StdDraw.pause(100);	// to keep the screen from constantly refreshing - makes text look almost blurry
 				
-				// make a blank box for where the input text will go
-				StdDraw.setPenColor(StdDraw.WHITE);
-				StdDraw.filledRectangle(0.5, 0, 0.2, 0.1);
 				// display the current input on the screen
-				StdDraw.setPenColor(StdDraw.BLACK);
-				StdDraw.text(0.5, 0, input);
+				BSTSimulator.printToScreen(input);
 			}
 			// makes what you've typed disappear
 			StdDraw.setPenColor(StdDraw.WHITE);

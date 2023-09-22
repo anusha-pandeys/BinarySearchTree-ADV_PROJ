@@ -35,57 +35,65 @@ public class BSTSimulator {
 		// make BST
 		BST bst = new BST();
 		
-		// make "add node" button
-		Button add = new Button(0.125, 0, 0.125, 0.2, "Add");
+		// make "insert node" button
+		Button insert = new Button(0.05, 0.25, 0.25, 0.2, "Insert");
 		
 		// make "delete node" button
-		Button delete = new Button(0.375, 0, 0.125, 0.2, "Delete");
+		Button delete = new Button(0.35, 0.25, 0.25, 0.2, "Delete");
 		
 		// make "find node" button
-		Button find = new Button(0.625, 0, 0.125, 0.2, "Find");
+		Button find = new Button(0.65, 0.25, 0.25, 0.2, "Find");
 		
 		// make "pre-order print" button
-		Button preOrderPrint = new Button(0.875, 0, 0.125, 0.2, "Pre-order print");
+		Button clear = new Button(0.95, 0.25, 0.25, 0.2, "Clear");
 		
 		// make "in-order print" button
-		//Button inOrderPrint = new Button(0.625, 0, 0.125, 0.2, "In-order print");
+		Button preOrderPrint = new Button(0.05, 0, 0.25, 0.2, "Pre-order");
 		
 		// make "post-order print" button
-		//Button postOrderPrint = new Button(0.750, 0, 0.125, 0.2, "Post-order print");
+		Button inOrderPrint = new Button(0.35, 0, 0.25, 0.2, "In-order");
 		
 		// make "clear" button
-		//Button clearOrderPrint = new Button(0.875, 0, 0.125, 0.2, "Clear all");
+		Button postOrderPrint = new Button(0.65, 0, 0.25, 0.2, "Post-order");
 		
 		// waits to collect data & sends collected info to BST
 		while (true) {
 			// check to see if insert has been pressed
-			String insertData = checkInput(add);
-			bst.insert(insertData);
+			String insertData = checkInput(insert);
+			if (insertData != null) bst.insert(insertData);
 			
 			// check to see if delete has been pressed
 			String deleteData = checkInput(delete);
-			bst.delete(deleteData);
+			if (deleteData != null) bst.delete(deleteData);
 			
 			// check to see if find has been pressed
+			//String findData = checkInput(find);
+			//bst.find(findData);
 			
 			// check to see if pre-order print has been pressed
+			//if (preOrderPrint.isClicked()) bst.preOrderPrint();
 			
 			// check to see if in-order print has been pressed
+			if (inOrderPrint.isClicked()) bst.inOrderPrint();
 			
 			// check to see if post-order print has been pressed
+			//if (postOrderPrint.isClicked()) bst.postOrderPrint();
 			
 			// check to see if clear has been pressed
+			//if (clear.isClicked()) bst.clear();
 		}
 	}
 	
 	public static String checkInput(Button button) {
 		String data = button.getData();
-		if (data != null) {	// this is means that an input has been given
-			return data;
-		}
-		return "";
+		return data;
 	}
 	
-
+	public static void printToScreen(String s) {
+		StdDraw.setPenColor(StdDraw.WHITE);
+		StdDraw.filledRectangle(0.5, -0.175, 0.75, 0.075);
+		StdDraw.setPenColor(StdDraw.BLACK);
+		StdDraw.text(0.5, -0.175, s);
+	}
 }
 

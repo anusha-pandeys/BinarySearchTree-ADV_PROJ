@@ -9,16 +9,16 @@ public class BST {
 		animations = new BSTAnimations();
 	}
 	
-	public boolean insert(String s) {
+	public boolean insert (String s) {
 		if (s == "") {
-			animations.print("ERROR");
+			animations.print("ERROR 1");
 		} else {
 			insertHelper (s, root, null);
 		}
 		return true;
 	}
 	
-	private void insertHelper(String s, Node cur, Node parent) {
+	private void insertHelper (String s, Node cur, Node parent) {
 		if (root == null) {
 			root = new Node();
 			root.key = s;
@@ -57,8 +57,8 @@ public class BST {
 	}
 	
 	public boolean delete (String s) {
-		if (s == null) {
-			animations.print("ERROR");
+		if (s == "") {
+			animations.print("ERROR 2");
 			return true;
 		}
 		Node toDelete = findNode (s, root);
@@ -67,7 +67,7 @@ public class BST {
 		return true;
 	}
 	
-	private Node findNode(String key, Node cur) {
+	private Node findNode (String key, Node cur) {
 		
 		if (cur == null) {
 			animations.print("NOT FOUND");
@@ -128,4 +128,32 @@ public class BST {
 
 	}
 
+	public void inOrderPrint () {
+		String inOrder = inOrderPrintHelper("", root);
+		//inOrder = "hi";
+		
+		if (inOrder.length() == 0) {
+			inOrder = "binary search tree is empty";
+		}
+		
+		// PRINT TO THE SCREEN
+		BSTSimulator.printToScreen("in order: " + inOrder);
+	}
+	
+	private String inOrderPrintHelper(String s, Node cur) {
+		if (cur == null) {
+			return s;
+		}
+		
+		// call left tree
+		s = inOrderPrintHelper(s, cur.left);
+		
+		// append current node
+		s += cur.key;
+		
+		// call right tree
+		s = inOrderPrintHelper(s, cur.right);
+		
+		return s;
+	}
 }
