@@ -17,7 +17,7 @@ public class BST {
 			insertHelper (s, root, null);
 		}	
 	}
-	
+
 	private void insertHelper(String s, Node cur, Node parent) {
 		if (root == null) { //empty tree
 			root = new Node(s);
@@ -43,6 +43,7 @@ public class BST {
 				//as cur.
 				insertHelper (s, cur.right, cur);
 			}
+
 		} else { // s < cur.key, go left
 			animations.print("GOING LEFT");
 			//if correct location to insert is found,
@@ -62,9 +63,8 @@ public class BST {
 				insertHelper (s, cur.left, cur); 
 			}
 		}
-		
 	}
-	
+
 	public void delete (String s) {
 		if (s.isEmpty()) {
 			animations.print("ERROR");
@@ -75,10 +75,9 @@ public class BST {
 			if (toDelete != null) {
 				hibbardDeletion (toDelete, toDelete.prev);
 			}
-			
 		}
 	}
-	
+
 	//finds a node in the tree
 	//returns the position of the node
 	//if not found, returns null
@@ -113,8 +112,7 @@ public class BST {
 			}
 			if (root == cur) {
 				root = null;
-			} 
-			
+			}
 		} else if (cur.left == null) {
 			//if the node has a right child, move up the right child
 			animations.deleteNode (parent, cur);
@@ -149,9 +147,36 @@ public class BST {
 			//redraw cur with the value of min
 			animations.drawNode (cur);
 			animations.drawLine(parent, cur);
-			
-		}	
-
+		}
 	}
 
+	public void inOrderPrint () {
+		String inOrder = inOrderPrintHelper("", root);
+		
+		if (inOrder.length() == 0) {
+			inOrder = "binary search tree is empty";
+		} else {
+			inOrder = inOrder.substring(0, inOrder.length() - 2);
+		}
+		
+		// print to the screen
+		BSTAnimations.printToScreen("in order: " + inOrder);
+	}
+	
+	private String inOrderPrintHelper(String s, Node cur) {
+		if (cur == null) {
+			return s;
+		}
+		
+		// call left tree
+		s = inOrderPrintHelper(s, cur.left);
+		
+		// append current node
+		s += cur.key + ", ";
+		
+		// call right tree
+		s = inOrderPrintHelper(s, cur.right);
+		
+		return s;
+	}
 }
