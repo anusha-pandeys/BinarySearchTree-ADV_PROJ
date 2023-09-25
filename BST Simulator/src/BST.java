@@ -54,7 +54,7 @@ public class BST {
 				cur.left.x = cur.x - 0.25 / Math.pow(2, cur.left.depth);
 				cur.left.y = cur.y - 0.15;
 				animations.drawNode(cur.left);
-				animations.drawLine (cur, cur.left);
+				animations.drawLine (cur, cur.left); 
 			} else {
 				//search again for the correct location
 				//set previous node to cur, and new node to search
