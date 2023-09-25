@@ -8,9 +8,9 @@ public class BSTAnimations {
 	}
 	
 	public void print (String text) {
-		message.changeText(text);
+		message.changeText(text, StdDraw.WHITE);
 		StdDraw.pause(1500);
-		message.changeText("");
+		message.changeText("", StdDraw.WHITE);
 		StdDraw.pause(500);
 	}
 	
@@ -43,6 +43,13 @@ public class BSTAnimations {
 				StdDraw.line(parent.x - CIRCLE_EDGE, parent.y - CIRCLE_EDGE, child.x + CIRCLE_EDGE, child.y + CIRCLE_EDGE);
 			}
 		}
+	}
+	
+	public static void printToScreen(String s) {
+		StdDraw.setPenColor(StdDraw.WHITE);
+		StdDraw.filledRectangle(0.5, -0.175, 0.75, 0.075);
+		StdDraw.setPenColor(StdDraw.BLACK);
+		StdDraw.text(0.5, -0.175, s);
 	}
 
 }
