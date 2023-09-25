@@ -71,7 +71,7 @@ public class BSTSimulator {
 			//bst.find(findData);
 			
 			// check to see if pre-order print has been pressed
-			//if (preOrderPrint.isClicked()) bst.preOrderPrint();
+			if (preOrderPrint.isClicked()) bst.preOrderPrint();
 			
 			// check to see if in-order print has been pressed
 			if (inOrderPrint.isClicked()) bst.inOrderPrint();

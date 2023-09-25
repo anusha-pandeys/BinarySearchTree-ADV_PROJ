@@ -211,6 +211,34 @@ public class BST {
 		
 		return s;
 	}
+
+	
+	public void preOrderPrint() {
+		String preOrder = preOrderPrintHelper("", root);
+		
+		preOrder = checkIfTextEmpty(preOrder);
+		
+		// print to the screen
+		BSTAnimations.printToScreen("pre order: " + preOrder);
+		
+	}
+
+	private String preOrderPrintHelper(String s, Node cur) {
+		if (cur == null) {
+			return s;
+		}
+		
+		// append current node
+		s += cur.key + ", ";
+		
+		// call left tree
+		s = preOrderPrintHelper(s, cur.left);
+		
+		// call right tree
+		s = preOrderPrintHelper(s, cur.right);
+		
+		return s;
+	}
 	
 	
 }
