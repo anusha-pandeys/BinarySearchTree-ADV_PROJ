@@ -67,8 +67,13 @@ public class BSTSimulator {
 			if (deleteData != null) bst.delete(deleteData);
 			
 			// check to see if find has been pressed
+<<<<<<< Upstream, based on origin/main
 			//String findData = find.getData();
 			//bst.find(findData);
+=======
+			String findData = checkInput(find);
+			if (findData != null) bst.find(findData);
+>>>>>>> 7bcfa48 created methods to implement a find function
 			
 			// check to see if pre-order print has been pressed
 			if (preOrderPrint.isClicked()) bst.preOrderPrint();

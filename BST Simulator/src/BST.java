@@ -69,7 +69,7 @@ public class BST {
 			animations.print("ERROR");
 		} else {
 			//find node to delete
-			Node toDelete = findNode (s, root);
+			Node toDelete = findHelper(s, root);
 			//use hibbard deletion
 			if (toDelete != null) {
 				hibbardDeletion (toDelete, toDelete.prev);
@@ -77,19 +77,27 @@ public class BST {
 		}
 	}
 
+	public void find (String s) {
+		if (s.isEmpty()) {
+			animations.print("ERROR");
+		} else {
+			Node toDelete = findHelper(s, root);
+		}
+	}
+	
 	//finds a node in the tree
 	//returns the position of the node
 	//if not found, returns null
-	private Node findNode(String key, Node cur) {
+	private Node findHelper(String key, Node cur) {
 		if (cur == null) {
 			animations.print("NOT FOUND");
 			return null;
 		} else if (key.compareTo(cur.key) < 0) {
 			animations.print("GOING LEFT");
-			return findNode (key, cur.left);
+			return findHelper (key, cur.left);
 		} else if (key.compareTo(cur.key) > 0) {
 			animations.print("GOING RIGHT");
-			return findNode (key, cur.right);
+			return findHelper (key, cur.right);
 		} else {
 			animations.print("FOUND IT!");
 			return cur;
