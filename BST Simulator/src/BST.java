@@ -59,7 +59,7 @@ public class BST {
 				//search again for the correct location
 				//set previous node to cur, and new node to search
 				//as cur.
-				insertHelper (s, cur.left, cur);
+				insertHelper (s, cur.left, cur); 
 			}
 		}
 		
