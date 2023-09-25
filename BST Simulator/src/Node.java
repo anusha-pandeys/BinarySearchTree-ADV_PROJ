@@ -18,6 +18,12 @@ public class Node {
     }
     public Node (String s) {
     	key = s;
+		left = null;
+		right = null;
+		prev = null;
+		depth = 0;
+		x = 0.5;
+		y = 0.7;
     }
 
 
