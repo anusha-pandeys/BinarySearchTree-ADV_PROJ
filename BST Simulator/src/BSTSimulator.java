@@ -88,12 +88,5 @@ public class BSTSimulator {
 		String data = button.getData();
 		return data;
 	}
-	
-	public static void printToScreen(String s) {
-		StdDraw.setPenColor(StdDraw.WHITE);
-		StdDraw.filledRectangle(0.5, -0.175, 0.75, 0.075);
-		StdDraw.setPenColor(StdDraw.BLACK);
-		StdDraw.text(0.5, -0.175, s);
-	}
 }
 

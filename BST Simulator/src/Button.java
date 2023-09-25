@@ -1,3 +1,4 @@
+import java.awt.Color;
 
 public class Button {
 	// fields
@@ -14,15 +15,17 @@ public class Button {
 		this.width = width;
 		this.height = height;
 		
-		StdDraw.setPenColor(StdDraw.GRAY);
-		StdDraw.filledRectangle(x, y, width/2, height/2);
+		changeText(text, StdDraw.GRAY);
 		
-		StdDraw.setPenColor(StdDraw.BLACK);
-		StdDraw.text(x, y, text);
+//		StdDraw.setPenColor(StdDraw.GRAY);
+//		StdDraw.filledRectangle(x, y, width/2, height/2);
+//		
+//		StdDraw.setPenColor(StdDraw.BLACK);
+//		StdDraw.text(x, y, text);
 	}
 	
-	public void changeText(String newText) {
-		StdDraw.setPenColor(StdDraw.WHITE);
+	public void changeText(String newText, Color color) {
+		StdDraw.setPenColor(color);
 		StdDraw.filledRectangle(x, y, width/2, height/2);
 		
 		StdDraw.setPenColor(StdDraw.BLACK);
@@ -55,12 +58,11 @@ public class Button {
 				StdDraw.pause(100);	// to keep the screen from constantly refreshing - makes text look almost blurry
 				
 				// display the current input on the screen
-				BSTSimulator.printToScreen(input);
+				BSTAnimations.printToScreen(input);
 			}
-			// makes what you've typed disappear
-			StdDraw.setPenColor(StdDraw.WHITE);
-			StdDraw.filledRectangle(0.5, 0, 0.2, 0.1);
-			StdDraw.setPenColor(StdDraw.BLACK);
+			
+			// erase what you typed
+			BSTAnimations.printToScreen("");
 			
 			return input;
 		}

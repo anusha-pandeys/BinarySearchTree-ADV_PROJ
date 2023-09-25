@@ -38,7 +38,6 @@ public class BST {
 			} else {
 				insertHelper (s, cur.right, cur);
 			}
-			
 		} else {
 			animations.print("GOING LEFT");
 			if (cur.left == null) {
@@ -53,7 +52,6 @@ public class BST {
 				insertHelper (s, cur.left, cur);
 			}
 		}
-		
 	}
 	
 	public boolean delete (String s) {
@@ -68,7 +66,6 @@ public class BST {
 	}
 	
 	private Node findNode (String key, Node cur) {
-		
 		if (cur == null) {
 			animations.print("NOT FOUND");
 			return null;
@@ -99,8 +96,7 @@ public class BST {
 			}
 			if (root == cur) {
 				root = null;
-			} 
-			
+			}
 		} else if (cur.left == null) {
 			animations.deleteNode (parent, cur);
 			cur = cur.right;
@@ -123,21 +119,20 @@ public class BST {
 			
 			animations.drawNode (cur);
 			animations.drawLine(parent, cur);
-			
-		}	
-
+		}
 	}
 
 	public void inOrderPrint () {
 		String inOrder = inOrderPrintHelper("", root);
-		//inOrder = "hi";
 		
 		if (inOrder.length() == 0) {
 			inOrder = "binary search tree is empty";
+		} else {
+			inOrder = inOrder.substring(0, inOrder.length() - 2);
 		}
 		
-		// PRINT TO THE SCREEN
-		BSTSimulator.printToScreen("in order: " + inOrder);
+		// print to the screen
+		BSTAnimations.printToScreen("in order: " + inOrder);
 	}
 	
 	private String inOrderPrintHelper(String s, Node cur) {
@@ -149,7 +144,7 @@ public class BST {
 		s = inOrderPrintHelper(s, cur.left);
 		
 		// append current node
-		s += cur.key;
+		s += cur.key + ", ";
 		
 		// call right tree
 		s = inOrderPrintHelper(s, cur.right);
