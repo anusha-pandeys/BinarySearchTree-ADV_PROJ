@@ -150,14 +150,19 @@ public class BST {
 		}
 	}
 
+	private String checkIfTextEmpty(String text) {
+		if (text.length() == 0) {
+			text = "binary search tree is empty";
+		} else {
+			text = text.substring(0, text.length() - 2);
+		}
+		return text;
+	}
+	
 	public void inOrderPrint () {
 		String inOrder = inOrderPrintHelper("", root);
 		
-		if (inOrder.length() == 0) {
-			inOrder = "binary search tree is empty";
-		} else {
-			inOrder = inOrder.substring(0, inOrder.length() - 2);
-		}
+		inOrder = checkIfTextEmpty(inOrder);
 		
 		// print to the screen
 		BSTAnimations.printToScreen("in order: " + inOrder);
@@ -179,4 +184,33 @@ public class BST {
 		
 		return s;
 	}
+
+	
+	public void postOrderPrint() {
+		String postOrder = postOrderPrintHelper("", root);
+		
+		postOrder = checkIfTextEmpty(postOrder);
+		
+		// print to the screen
+		BSTAnimations.printToScreen("post order: " + postOrder);
+	}
+	
+	private String postOrderPrintHelper(String s, Node cur) {
+		if (cur == null) {
+			return s;
+		}
+		
+		// call left tree
+		s = postOrderPrintHelper(s, cur.left);
+		
+		// call right tree
+		s = postOrderPrintHelper(s, cur.right);
+		
+		// append current node
+		s += cur.key + ", ";
+		
+		return s;
+	}
+	
+	
 }

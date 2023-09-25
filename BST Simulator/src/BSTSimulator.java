@@ -59,15 +59,15 @@ public class BSTSimulator {
 		// waits to collect data & sends collected info to BST
 		while (true) {
 			// check to see if insert has been pressed
-			String insertData = checkInput(insert);
+			String insertData = insert.getData();
 			if (insertData != null) bst.insert(insertData);
 			
 			// check to see if delete has been pressed
-			String deleteData = checkInput(delete);
+			String deleteData = delete.getData();
 			if (deleteData != null) bst.delete(deleteData);
 			
 			// check to see if find has been pressed
-			//String findData = checkInput(find);
+			//String findData = find.getData();
 			//bst.find(findData);
 			
 			// check to see if pre-order print has been pressed
@@ -77,16 +77,11 @@ public class BSTSimulator {
 			if (inOrderPrint.isClicked()) bst.inOrderPrint();
 			
 			// check to see if post-order print has been pressed
-			//if (postOrderPrint.isClicked()) bst.postOrderPrint();
+			if (postOrderPrint.isClicked()) bst.postOrderPrint();
 			
 			// check to see if clear has been pressed
 			//if (clear.isClicked()) bst.clear();
 		}
-	}
-	
-	public static String checkInput(Button button) {
-		String data = button.getData();
-		return data;
 	}
 }
 
