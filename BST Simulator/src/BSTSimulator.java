@@ -80,7 +80,7 @@ public class BSTSimulator {
 			if (postOrderPrint.isClicked()) bst.postOrderPrint();
 			
 			// check to see if clear has been pressed
-			//if (clear.isClicked()) bst.clear();
+			if (clear.isClicked()) bst.clear();
 		}
 	}
 }

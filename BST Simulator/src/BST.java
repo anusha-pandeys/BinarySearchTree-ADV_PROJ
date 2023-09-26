@@ -9,6 +9,19 @@ public class BST {
 		root = null;
 	}
 	
+	public void clear() {
+		clearHelper (root);
+	}
+	
+	private void clearHelper (Node cur) {
+		if (cur == null) {
+			return;
+		}
+		clearHelper (cur.left);
+		clearHelper(cur.right);
+		hibbardDeletion(cur, cur.prev);
+	}
+	
 	public void insert(String s) {
 		//if no value given, print an error
 		if (s.isEmpty()) {
