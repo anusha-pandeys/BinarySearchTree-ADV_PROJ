@@ -43,6 +43,7 @@ public class BST {
 				//as cur.
 				insertHelper (s, cur.right, cur);
 			}
+
 		} else { // s < cur.key, go left
 			animations.print("GOING LEFT");
 			//if correct location to insert is found,
@@ -63,7 +64,7 @@ public class BST {
 			}
 		}
 	}
-	
+
 	public void delete (String s) {
 		if (s.isEmpty()) {
 			animations.print("ERROR");
