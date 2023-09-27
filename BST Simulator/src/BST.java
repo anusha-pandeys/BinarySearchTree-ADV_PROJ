@@ -181,24 +181,26 @@ public class BST {
 	}
 	
 	public void inOrderPrint () {
-		String inOrder = inOrderPrintHelper("", root);
+		if (root == null) {
+			animations.print("BST IS EMPTY");
+		} else {
+			inOrderPrintHelper("in order: ", root);
+		}
 		
-		inOrder = checkIfTextEmpty(inOrder);
-		
-		// print to the screen
-		BSTAnimations.printToScreen("in order: " + inOrder);
 	}
 	
 	private String inOrderPrintHelper(String s, Node cur) {
 		if (cur == null) {
-			return s;
+			return s;			
 		}
-		
 		// call left tree
 		s = inOrderPrintHelper(s, cur.left);
-		
+
+		animations.startHighlight(cur);
 		// append current node
-		s += cur.key + ", ";
+		s += cur.key + " ";
+		BSTAnimations.printToScreen(s);
+		animations.stopHighlight(cur);
 		
 		// call right tree
 		s = inOrderPrintHelper(s, cur.right);

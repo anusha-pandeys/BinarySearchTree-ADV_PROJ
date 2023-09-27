@@ -7,6 +7,29 @@ public class BSTAnimations {
 		message = new Button(0.5, 1, 0.5, 0.2, "");
 	}
 	
+	public void startHighlight (Node n) {
+		if (n == null) {
+			return;
+		}
+		StdDraw.setPenColor(StdDraw.YELLOW);
+		StdDraw.filledCircle(n.x, n.y, R);
+		
+		StdDraw.setPenColor(StdDraw.BLACK);
+		StdDraw.text(n.x, n.y, n.key);
+		StdDraw.pause(500);
+	}
+	
+	public void stopHighlight (Node n) {
+		if (n == null) {
+			return;
+		}
+		StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);
+		StdDraw.filledCircle(n.x, n.y, R);
+		
+		StdDraw.setPenColor(StdDraw.BLACK);
+		StdDraw.text(n.x, n.y, n.key);
+	}
+	
 	public void print (String text) {
 		message.changeText(text, StdDraw.WHITE);
 		StdDraw.pause(1500);
@@ -15,7 +38,7 @@ public class BSTAnimations {
 	}
 	
 	public void drawNode(Node n) {
-		StdDraw.setPenColor(StdDraw.RED);
+		StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);
 		StdDraw.filledCircle(n.x, n.y, R);
 		
 		StdDraw.setPenColor(StdDraw.BLACK);
