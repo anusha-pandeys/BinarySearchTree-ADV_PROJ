@@ -1,18 +1,16 @@
 public class BST {
 		
 	private Node root;
-	private BSTAnimations animations; //use to animate BST
 	private final double canvasWidth = 1.0;
 
 	public BST () {
-		animations = new BSTAnimations();
 		root = null;
 	}
 	
 	public void insert(String s) {
 		//if no value given, print an error
 		if (s.isEmpty()) {
-			animations.print("ERROR");
+			BSTAnimations.print("ERROR");
 		} else {
 			insertHelper (s, root, null);
 		}	
@@ -21,12 +19,12 @@ public class BST {
 	private void insertHelper(String s, Node cur, Node parent) {
 		if (root == null) { //empty tree
 			root = new Node(s);
-			animations.drawNode(root);
+			BSTAnimations.drawNode(root);
 			return;
 		} else if (cur.key.compareTo(s) == 0) { //no duplicates allowed
-			animations.print("NO DUPLICATES");
+			BSTAnimations.print("NO DUPLICATES");
 		} else if (cur.key.compareTo(s) < 0) { //s > cur.key, go right
-			animations.print("GOING RIGHT");
+			BSTAnimations.print("GOING RIGHT");
 			//if correct location to insert is found,
 			//create a new node and draw it
 			if (cur.right == null) {
@@ -35,8 +33,8 @@ public class BST {
 				cur.right.depth = cur.right.prev.depth + 1;
 				cur.right.x = cur.x + 0.25 / Math.pow(2, cur.right.depth);
 				cur.right.y = cur.y - 0.15;
-				animations.drawNode(cur.right);
-				animations.drawLine (cur, cur.right);
+				BSTAnimations.drawNode(cur.right);
+				BSTAnimations.drawLine (cur, cur.right);
 			} else {
 				//search again for the correct location
 				//set previous node to cur, and new node to search
@@ -45,7 +43,7 @@ public class BST {
 			}
 
 		} else { // s < cur.key, go left
-			animations.print("GOING LEFT");
+			BSTAnimations.print("GOING LEFT");
 			//if correct location to insert is found,
 			//create a new node and draw it
 			if (cur.left == null) {
@@ -54,8 +52,8 @@ public class BST {
 				cur.left.depth = cur.left.prev.depth + 1;
 				cur.left.x = cur.x - 0.25 / Math.pow(2, cur.left.depth);
 				cur.left.y = cur.y - 0.15;
-				animations.drawNode(cur.left);
-				animations.drawLine (cur, cur.left); 
+				BSTAnimations.drawNode(cur.left);
+				BSTAnimations.drawLine (cur, cur.left); 
 			} else {
 				//search again for the correct location
 				//set previous node to cur, and new node to search
@@ -67,7 +65,7 @@ public class BST {
 
 	public void delete (String s) {
 		if (s.isEmpty()) {
-			animations.print("ERROR");
+			BSTAnimations.print("ERROR");
 		} else {
 			//find node to delete
 			Node toDelete = findNode (s, root);
@@ -83,16 +81,16 @@ public class BST {
 	//if not found, returns null
 	private Node findNode(String key, Node cur) {
 		if (cur == null) {
-			animations.print("NOT FOUND");
+			BSTAnimations.print("NOT FOUND");
 			return null;
 		} else if (key.compareTo(cur.key) < 0) {
-			animations.print("GOING LEFT");
+			BSTAnimations.print("GOING LEFT");
 			return findNode (key, cur.left);
 		} else if (key.compareTo(cur.key) > 0) {
-			animations.print("GOING RIGHT");
+			BSTAnimations.print("GOING RIGHT");
 			return findNode (key, cur.right);
 		} else {
-			animations.print("FOUND IT!");
+			BSTAnimations.print("FOUND IT!");
 			return cur;
 		}
 	}
@@ -101,7 +99,7 @@ public class BST {
 	private void hibbardDeletion (Node cur, Node parent) {
 		//if cur has no children, just delete the node and remove its edge
 		if (cur.left == null && cur.right == null) {
-			animations.deleteNode (parent, cur);
+			BSTAnimations.deleteNode (parent, cur);
 			//if the node has a parent, remove the edge between them.
 			if (parent != null) {
 				if (parent.left == cur) {
@@ -115,20 +113,20 @@ public class BST {
 			}
 		} else if (cur.left == null) {
 			//if the node has a right child, move up the right child
-			animations.deleteNode (parent, cur);
+			BSTAnimations.deleteNode (parent, cur);
 			//MOVE UP
 			cur = cur.right;
 			
 		} else if (cur.right == null) {
 			//if the node has a left child, move up the left child
-			animations.deleteNode (parent, cur);
+			BSTAnimations.deleteNode (parent, cur);
 			//MOVE UP
 			cur = cur.left;
 		} else {
 			//if the node has two children...
 			
 			//delete the drawing of the node and its edge to its parent
-			animations.deleteNode (parent, cur);
+			BSTAnimations.deleteNode (parent, cur);
 			
 			//find the minimum node as the successor node
 			Node min = cur.right;
@@ -145,8 +143,8 @@ public class BST {
 			hibbardDeletion(min, minParent);
 			
 			//redraw cur with the value of min
-			animations.drawNode (cur);
-			animations.drawLine(parent, cur);
+			BSTAnimations.drawNode (cur);
+			BSTAnimations.drawLine(parent, cur);
 		}
 	}
 
@@ -165,7 +163,7 @@ public class BST {
 		inOrder = checkIfTextEmpty(inOrder);
 		
 		// print to the screen
-		BSTAnimations.printToScreen("in order: " + inOrder);
+		BSTAnimations.print("in order: " + inOrder);
 	}
 	
 	private String inOrderPrintHelper(String s, Node cur) {
@@ -192,7 +190,7 @@ public class BST {
 		postOrder = checkIfTextEmpty(postOrder);
 		
 		// print to the screen
-		BSTAnimations.printToScreen("post order: " + postOrder);
+		BSTAnimations.print("post order: " + postOrder);
 	}
 	
 	private String postOrderPrintHelper(String s, Node cur) {
@@ -219,7 +217,7 @@ public class BST {
 		preOrder = checkIfTextEmpty(preOrder);
 		
 		// print to the screen
-		BSTAnimations.printToScreen("pre order: " + preOrder);
+		BSTAnimations.print("pre order: " + preOrder);
 		
 	}
 

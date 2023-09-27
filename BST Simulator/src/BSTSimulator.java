@@ -61,9 +61,7 @@ public class BSTSimulator {
 		Button postOrderPrint = new Button(x, y - 6 * dy, width, height, "Post-order");
 		
 		// make area to type
-		StdDraw.setPenRadius(0.004);
-		StdDraw.line(0, Y_SCALE / 16, width, Y_SCALE / 16);
-		StdDraw.setPenRadius();
+		BSTAnimations.print("");
 		
 		// waits to collect data & sends collected info to BST
 		while (true) {

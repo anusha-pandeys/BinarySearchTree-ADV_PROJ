@@ -49,14 +49,14 @@ public class Button {
 						input += newKey;	// otherwise, add it to the input string
 					}
 				}
-				StdDraw.pause(100);	// to keep the screen from constantly refreshing - makes text look almost blurry
+				StdDraw.pause(150);	// to keep the screen from constantly refreshing - makes text look almost blurry
 				
 				// display the current input on the screen
-				BSTAnimations.printToScreen(input);
+				BSTAnimations.print(input);
 			}
 			
 			// erase what you typed
-			BSTAnimations.printToScreen("");
+			BSTAnimations.print("");
 			
 			return input;
 		}
