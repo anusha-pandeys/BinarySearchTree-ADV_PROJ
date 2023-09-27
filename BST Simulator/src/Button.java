@@ -16,12 +16,6 @@ public class Button {
 		this.height = height;
 		
 		changeText(text, StdDraw.GRAY);
-		
-//		StdDraw.setPenColor(StdDraw.GRAY);
-//		StdDraw.filledRectangle(x, y, width/2, height/2);
-//		
-//		StdDraw.setPenColor(StdDraw.BLACK);
-//		StdDraw.text(x, y, text);
 	}
 	
 	public void changeText(String newText, Color color) {

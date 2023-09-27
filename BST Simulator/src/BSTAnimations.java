@@ -3,14 +3,10 @@ public class BSTAnimations {
 	private final double R = 0.07;
 	private final double CIRCLE_EDGE = Math.sqrt(0.2) * R + 0.015;
 	
-	public BSTAnimations() {
-		message = new Button(0.5, 1, 0.5, 0.2, "");
-	}
-	
 	public void print (String text) {
-		message.changeText(text, StdDraw.WHITE);
+		printToScreen(text);
 		StdDraw.pause(1500);
-		message.changeText("", StdDraw.WHITE);
+		printToScreen("");
 		StdDraw.pause(500);
 	}
 	
