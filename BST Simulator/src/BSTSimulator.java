@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 /**
  * 
  * Use this class to handle the main features of your application.
@@ -11,6 +13,7 @@ public class BSTSimulator {
 	public static final double CANVAS_HEIGHT = 768 * 0.9;
 	public static final double X_SCALE = CANVAS_WIDTH / CANVAS_HEIGHT;
 	public static final double Y_SCALE = 1;
+	private static final Color buttonColor = StdDraw.PINK;
 	
 	public static void main(String[] args) {
 		// generate STDraw window
@@ -40,25 +43,25 @@ public class BSTSimulator {
 		double height = Y_SCALE / 8;
 		
 		// make "insert node" button
-		Button insert = new Button(x, y, width, height, "Insert");
+		Button insert = new Button(x, y, width, height, "Insert", buttonColor);
 		
 		// make "delete node" button
-		Button delete = new Button(x, y - dy, width, height, "Delete");
+		Button delete = new Button(x, y - dy, width, height, "Delete", buttonColor);
 		
 		// make "find node" button
-		Button find = new Button(x, y - 2 * dy, width, height, "Find");
+		Button find = new Button(x, y - 2 * dy, width, height, "Find", buttonColor);
 		
 		// make "pre-order print" button
-		Button clear = new Button(x, y - 3 * dy, width, height, "Clear");
+		Button clear = new Button(x, y - 3 * dy, width, height, "Clear", buttonColor);
 		
 		// make "in-order print" button
-		Button preOrderPrint = new Button(x, y - 4 * dy, width, height, "Pre-order");
+		Button preOrderPrint = new Button(x, y - 4 * dy, width, height, "Pre-order", buttonColor);
 		
 		// make "post-order print" button
-		Button inOrderPrint = new Button(x, y - 5 * dy, width, height, "In-order");
+		Button inOrderPrint = new Button(x, y - 5 * dy, width, height, "In-order", buttonColor);
 		
 		// make "clear" button
-		Button postOrderPrint = new Button(x, y - 6 * dy, width, height, "Post-order");
+		Button postOrderPrint = new Button(x, y - 6 * dy, width, height, "Post-order", buttonColor);
 		
 		// make area to type
 		BSTAnimations.print("");

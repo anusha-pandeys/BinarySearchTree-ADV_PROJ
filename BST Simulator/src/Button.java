@@ -9,13 +9,22 @@ public class Button {
 	private final int ENTER = 10;
 	private final int BACKSPACE = 8;
 	
-	public Button (double x, double y, double width, double height, String text) {
+	public Button(double x, double y, double width, double height, String text) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
 		
-		changeText(text, StdDraw.GRAY);
+		changeText(text, StdDraw.WHITE);
+	}
+	
+	public Button(double x, double y, double width, double height, String text, Color color) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		
+		changeText(text, color);
 	}
 	
 	public void changeText(String newText, Color color) {

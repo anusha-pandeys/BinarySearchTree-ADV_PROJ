@@ -1,7 +1,6 @@
 public class BST {
 		
 	private Node root;
-	private final double canvasWidth = 1.0;
 
 	public BST () {
 		root = null;
@@ -23,7 +22,7 @@ public class BST {
 	public void insert(String s) {
 		//if no value given, print an error
 		if (s.isEmpty()) {
-			BSTAnimations.print("ERROR");
+			BSTAnimations.printToTop("ERROR");
 		} else {
 			insertHelper (s, root, null);
 		}	
@@ -35,9 +34,9 @@ public class BST {
 			BSTAnimations.drawNode(root);
 			return;
 		} else if (cur.key.compareTo(s) == 0) { //no duplicates allowed
-			BSTAnimations.print("NO DUPLICATES");
+			BSTAnimations.printToTop("NO DUPLICATES");
 		} else if (cur.key.compareTo(s) < 0) { //s > cur.key, go right
-			BSTAnimations.print("GOING RIGHT");
+			BSTAnimations.printToTop("GOING RIGHT");
 			//if correct location to insert is found,
 			//create a new node and draw it
 			if (cur.right == null) {
@@ -56,7 +55,7 @@ public class BST {
 			}
 
 		} else { // s < cur.key, go left
-			BSTAnimations.print("GOING LEFT");
+			BSTAnimations.printToTop("GOING LEFT");
 			//if correct location to insert is found,
 			//create a new node and draw it
 			if (cur.left == null) {
@@ -78,7 +77,7 @@ public class BST {
 
 	public void delete (String s) {
 		if (s.isEmpty()) {
-			BSTAnimations.print("ERROR");
+			BSTAnimations.printToTop("ERROR");
 		} else {
 			//find node to delete
 			Node toDelete = findHelper(s, root);
@@ -91,7 +90,7 @@ public class BST {
 
 	public void find (String s) {
 		if (s.isEmpty()) {
-			animations.print("ERROR");
+			BSTAnimations.printToTop("ERROR");
 		} else {
 			Node toDelete = findHelper(s, root);
 		}
@@ -102,16 +101,16 @@ public class BST {
 	//if not found, returns null
 	private Node findHelper(String key, Node cur) {
 		if (cur == null) {
-			BSTAnimations.print("NOT FOUND");
+			BSTAnimations.printToTop("NOT FOUND");
 			return null;
 		} else if (key.compareTo(cur.key) < 0) {
-			animations.print("GOING LEFT");
+			BSTAnimations.printToTop("GOING LEFT");
 			return findHelper (key, cur.left);
 		} else if (key.compareTo(cur.key) > 0) {
-			animations.print("GOING RIGHT");
+			BSTAnimations.printToTop("GOING RIGHT");
 			return findHelper (key, cur.right);
 		} else {
-			BSTAnimations.print("FOUND IT!");
+			BSTAnimations.printToTop("FOUND IT!");
 			return cur;
 		}
 	}
@@ -180,7 +179,7 @@ public class BST {
 	
 	public void inOrderPrint () {
 		if (root == null) {
-			animations.print("BST IS EMPTY");
+			BSTAnimations.printToTop("BST IS EMPTY");
 		} else {
 			inOrderPrintHelper("in order: ", root);
 		}
@@ -193,11 +192,11 @@ public class BST {
 		// call left tree
 		s = inOrderPrintHelper(s, cur.left);
 
-		animations.startHighlight(cur);
+		BSTAnimations.startHighlight(cur);
 		// append current node
 		s += cur.key + " ";
-		BSTAnimations.printToScreen(s);
-		animations.stopHighlight(cur);
+		BSTAnimations.print(s);
+		BSTAnimations.stopHighlight(cur);
 		
 		// call right tree
 		s = inOrderPrintHelper(s, cur.right);
@@ -212,7 +211,7 @@ public class BST {
 		postOrder = checkIfTextEmpty(postOrder);
 		
 		// print to the screen
-		BSTAnimations.print("post order: " + postOrder);
+		BSTAnimations.printToTop("post order: " + postOrder);
 	}
 	
 	private String postOrderPrintHelper(String s, Node cur) {
@@ -239,7 +238,7 @@ public class BST {
 		preOrder = checkIfTextEmpty(preOrder);
 		
 		// print to the screen
-		BSTAnimations.print("pre order: " + preOrder);
+		BSTAnimations.printToTop("pre order: " + preOrder);
 		
 	}
 

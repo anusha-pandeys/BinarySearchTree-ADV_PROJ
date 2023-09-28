@@ -1,14 +1,10 @@
 public class BSTAnimations {
-	Button message;
+	private static Button topMessage = new Button(BSTSimulator.X_SCALE / 2, BSTSimulator.Y_SCALE * 15 / 16, BSTSimulator.X_SCALE / 8, BSTSimulator.Y_SCALE / 8, "Welcome!"); 
 	private final static double R = 0.07;
 	private final static double CIRCLE_EDGE = Math.sqrt(0.2) * R + 0.015;
 	private final static double TEXT_SIZE = 16 / BSTSimulator.CANVAS_HEIGHT;
 	
-	public BSTAnimations() {
-		message = new Button(0.5, 1, 0.5, 0.2, "");
-	}
-	
-	public void startHighlight (Node n) {
+	public static void startHighlight (Node n) {
 		if (n == null) {
 			return;
 		}
@@ -20,7 +16,7 @@ public class BSTAnimations {
 		StdDraw.pause(500);
 	}
 	
-	public void stopHighlight (Node n) {
+	public static void stopHighlight (Node n) {
 		if (n == null) {
 			return;
 		}
@@ -31,14 +27,14 @@ public class BSTAnimations {
 		StdDraw.text(n.x, n.y, n.key);
 	}
 	
-	public void print (String text) {
-		message.changeText(text, StdDraw.WHITE);
+	public static void printToTop(String text) {
+		topMessage.changeText(text, StdDraw.WHITE);
 		StdDraw.pause(1500);
-		message.changeText("", StdDraw.WHITE);
+		topMessage.changeText("", StdDraw.WHITE);
 		StdDraw.pause(500);
 	}
 	
-	public void drawNode(Node n) {
+	public static void drawNode(Node n) {
 		StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);
 		StdDraw.filledCircle(n.x, n.y, R);
 		
