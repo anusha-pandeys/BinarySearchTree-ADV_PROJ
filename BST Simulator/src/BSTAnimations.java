@@ -1,7 +1,8 @@
 public class BSTAnimations {
 	Button message;
-	private final double R = 0.07;
-	private final double CIRCLE_EDGE = Math.sqrt(0.2) * R + 0.015;
+	private final static double R = 0.07;
+	private final static double CIRCLE_EDGE = Math.sqrt(0.2) * R + 0.015;
+	private final static double TEXT_SIZE = 16 / BSTSimulator.CANVAS_HEIGHT;
 	
 	public BSTAnimations() {
 		message = new Button(0.5, 1, 0.5, 0.2, "");
@@ -46,7 +47,7 @@ public class BSTAnimations {
 		
 	}
 	
-	public void drawLine (Node parent, Node child) {
+	public static void drawLine(Node parent, Node child) {
 		StdDraw.setPenColor(StdDraw.BLUE);
 		if (child == parent.right) {
 			StdDraw.line(parent.x + CIRCLE_EDGE, parent.y - CIRCLE_EDGE, child.x - CIRCLE_EDGE, child.y + CIRCLE_EDGE);
@@ -55,7 +56,7 @@ public class BSTAnimations {
 		}
 	}
 	
-	public void deleteNode(Node parent, Node child) {
+	public static void deleteNode(Node parent, Node child) {
 		StdDraw.setPenColor(StdDraw.WHITE);
 		StdDraw.filledCircle(child.x, child.y, R + 0.01);
 		if (parent != null) {
@@ -68,11 +69,19 @@ public class BSTAnimations {
 		}
 	}
 	
-	public static void printToScreen(String s) {
+	public static void print(String s) {
+		// "cover up" previous text
 		StdDraw.setPenColor(StdDraw.WHITE);
-		StdDraw.filledRectangle(0.5, -0.175, 0.75, 0.075);
-		StdDraw.setPenColor(StdDraw.BLACK);
-		StdDraw.text(0.5, -0.175, s);
+		StdDraw.filledRectangle(BSTSimulator.X_SCALE / 16, BSTSimulator.Y_SCALE / 16, BSTSimulator.X_SCALE / 16, BSTSimulator.Y_SCALE / 16);
+		
+		// draw new line
+		StdDraw.setPenRadius(0.004);
+		StdDraw.setPenColor();
+		StdDraw.line(0, BSTSimulator.Y_SCALE / 16 - TEXT_SIZE, BSTSimulator.X_SCALE / 8, BSTSimulator.Y_SCALE / 16 - TEXT_SIZE);
+		StdDraw.setPenRadius();
+		
+		// display new text
+		StdDraw.text(BSTSimulator.X_SCALE / 16, BSTSimulator.Y_SCALE / 16, s);
 	}
 
 }

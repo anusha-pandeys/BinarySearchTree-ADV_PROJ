@@ -6,9 +6,13 @@
  */
 
 public class BSTSimulator {
+	// makes the canvas size 90% the size of the school laptop screens
+	public static final double CANVAS_WIDTH = 1366 * 0.9;
+	public static final double CANVAS_HEIGHT = 768 * 0.9;
+	public static final double X_SCALE = CANVAS_WIDTH / CANVAS_HEIGHT;
+	public static final double Y_SCALE = 1;
+	
 	public static void main(String[] args) {
-		// set up BST here
-		
 		// generate STDraw window
 		createFrame();
 		startPage();
@@ -16,45 +20,48 @@ public class BSTSimulator {
 	
 	// creates an appropriate frame
 	public static void createFrame () {
-		StdDraw.setScale(-0.25, 1.25);	// makes a margin of 0.25 for the frame
+		StdDraw.setCanvasSize((int) CANVAS_WIDTH, (int) CANVAS_HEIGHT);
+		// scales the canvas to fit the resolution
+		StdDraw.setXscale(0, X_SCALE);
+		StdDraw.setYscale(0, Y_SCALE);
 		StdDraw.show();
 	}
 	
 	// sets up the beginning of the BST simulator
-	public static void startPage() {
-		// intro animation?
-		
-		//commenting this out since i wasn't sure how to make it go away
-		//when the rest of the code started to work
-		/*
-		// welcome message
-		String welcome = "Welcome to our binary search tree simulator!";
-		StdDraw.text(0.5, 1, welcome);
-		*/
-		
+	public static void startPage() {		
 		// make BST
 		BST bst = new BST();
 		
+		// coordinates and dimensions of the buttons
+		double x = X_SCALE / 16;
+		double y = Y_SCALE * 15 / 16;
+		double dy = Y_SCALE / 8;
+		double width = X_SCALE / 8;
+		double height = Y_SCALE / 8;
+		
 		// make "insert node" button
-		Button insert = new Button(0.05, 0.25, 0.25, 0.2, "Insert");
+		Button insert = new Button(x, y, width, height, "Insert");
 		
 		// make "delete node" button
-		Button delete = new Button(0.35, 0.25, 0.25, 0.2, "Delete");
+		Button delete = new Button(x, y - dy, width, height, "Delete");
 		
 		// make "find node" button
-		Button find = new Button(0.65, 0.25, 0.25, 0.2, "Find");
+		Button find = new Button(x, y - 2 * dy, width, height, "Find");
 		
 		// make "pre-order print" button
-		Button clear = new Button(0.95, 0.25, 0.25, 0.2, "Clear");
+		Button clear = new Button(x, y - 3 * dy, width, height, "Clear");
 		
 		// make "in-order print" button
-		Button preOrderPrint = new Button(0.05, 0, 0.25, 0.2, "Pre-order");
+		Button preOrderPrint = new Button(x, y - 4 * dy, width, height, "Pre-order");
 		
 		// make "post-order print" button
-		Button inOrderPrint = new Button(0.35, 0, 0.25, 0.2, "In-order");
+		Button inOrderPrint = new Button(x, y - 5 * dy, width, height, "In-order");
 		
 		// make "clear" button
-		Button postOrderPrint = new Button(0.65, 0, 0.25, 0.2, "Post-order");
+		Button postOrderPrint = new Button(x, y - 6 * dy, width, height, "Post-order");
+		
+		// make area to type
+		BSTAnimations.print("");
 		
 		// waits to collect data & sends collected info to BST
 		while (true) {
