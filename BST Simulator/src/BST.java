@@ -7,6 +7,19 @@ public class BST {
 		root = null;
 	}
 	
+	public void clear() {
+		clearHelper (root);
+	}
+	
+	private void clearHelper (Node cur) {
+		if (cur == null) {
+			return;
+		}
+		clearHelper (cur.left);
+		clearHelper(cur.right);
+		hibbardDeletion(cur, cur.prev);
+	}
+	
 	public void insert(String s) {
 		//if no value given, print an error
 		if (s.isEmpty()) {
@@ -68,7 +81,7 @@ public class BST {
 			BSTAnimations.print("ERROR");
 		} else {
 			//find node to delete
-			Node toDelete = findNode (s, root);
+			Node toDelete = findHelper(s, root);
 			//use hibbard deletion
 			if (toDelete != null) {
 				hibbardDeletion (toDelete, toDelete.prev);
@@ -76,19 +89,27 @@ public class BST {
 		}
 	}
 
+	public void find (String s) {
+		if (s.isEmpty()) {
+			animations.print("ERROR");
+		} else {
+			Node toDelete = findHelper(s, root);
+		}
+	}
+	
 	//finds a node in the tree
 	//returns the position of the node
 	//if not found, returns null
-	private Node findNode(String key, Node cur) {
+	private Node findHelper(String key, Node cur) {
 		if (cur == null) {
 			BSTAnimations.print("NOT FOUND");
 			return null;
 		} else if (key.compareTo(cur.key) < 0) {
-			BSTAnimations.print("GOING LEFT");
-			return findNode (key, cur.left);
+			animations.print("GOING LEFT");
+			return findHelper (key, cur.left);
 		} else if (key.compareTo(cur.key) > 0) {
-			BSTAnimations.print("GOING RIGHT");
-			return findNode (key, cur.right);
+			animations.print("GOING RIGHT");
+			return findHelper (key, cur.right);
 		} else {
 			BSTAnimations.print("FOUND IT!");
 			return cur;
@@ -158,24 +179,25 @@ public class BST {
 	}
 	
 	public void inOrderPrint () {
-		String inOrder = inOrderPrintHelper("", root);
-		
-		inOrder = checkIfTextEmpty(inOrder);
-		
-		// print to the screen
-		BSTAnimations.print("in order: " + inOrder);
+		if (root == null) {
+			animations.print("BST IS EMPTY");
+		} else {
+			inOrderPrintHelper("in order: ", root);
+		}
 	}
 	
 	private String inOrderPrintHelper(String s, Node cur) {
 		if (cur == null) {
-			return s;
+			return s;			
 		}
-		
 		// call left tree
 		s = inOrderPrintHelper(s, cur.left);
-		
+
+		animations.startHighlight(cur);
 		// append current node
-		s += cur.key + ", ";
+		s += cur.key + " ";
+		BSTAnimations.printToScreen(s);
+		animations.stopHighlight(cur);
 		
 		// call right tree
 		s = inOrderPrintHelper(s, cur.right);

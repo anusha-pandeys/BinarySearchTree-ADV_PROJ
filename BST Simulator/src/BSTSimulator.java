@@ -74,8 +74,8 @@ public class BSTSimulator {
 			if (deleteData != null) bst.delete(deleteData);
 			
 			// check to see if find has been pressed
-			//String findData = find.getData();
-			//bst.find(findData);
+			String findData = find.getData();
+			if (findData != null) bst.find(findData);
 			
 			// check to see if pre-order print has been pressed
 			if (preOrderPrint.isClicked()) bst.preOrderPrint();
@@ -87,7 +87,7 @@ public class BSTSimulator {
 			if (postOrderPrint.isClicked()) bst.postOrderPrint();
 			
 			// check to see if clear has been pressed
-			//if (clear.isClicked()) bst.clear();
+			if (clear.isClicked()) bst.clear();
 		}
 	}
 }
