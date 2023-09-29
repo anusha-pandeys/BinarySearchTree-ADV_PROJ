@@ -1,5 +1,5 @@
 public class Node {
-	String key;
+	Integer key;
 	Node left;
 	Node right;
 	Node prev;
@@ -16,8 +16,8 @@ public class Node {
 		x = 0.5;
 		y = 0.7;
     }
-    public Node (String s) {
-    	key = s;
+    public Node (Integer num) {
+    	key = num;
 		left = null;
 		right = null;
 		prev = null;

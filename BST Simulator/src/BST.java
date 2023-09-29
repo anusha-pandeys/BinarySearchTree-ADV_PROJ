@@ -19,28 +19,26 @@ public class BST {
 		hibbardDeletion(cur, cur.prev);
 	}
 	
-	public void insert(String s) {
+	public void insert(Integer n) {
 		//if no value given, print an error
-		if (s.isEmpty()) {
-			BSTAnimations.printToTop("ERROR");
-		} else {
-			insertHelper (s, root, null);
+		if (n != null) {
+			insertHelper (n, root, null);
 		}	
 	}
 
-	private void insertHelper(String s, Node cur, Node parent) {
+	private void insertHelper(Integer num, Node cur, Node parent) {
 		if (root == null) { //empty tree
-			root = new Node(s);
+			root = new Node(num);
 			BSTAnimations.drawNode(root);
 			return;
-		} else if (cur.key.compareTo(s) == 0) { //no duplicates allowed
+		} else if (cur.key == num) { //no duplicates allowed
 			BSTAnimations.printToTop("NO DUPLICATES");
-		} else if (cur.key.compareTo(s) < 0) { //s > cur.key, go right
+		} else if (cur.key < num) { //num > cur.key, go right
 			BSTAnimations.printToTop("GOING RIGHT");
 			//if correct location to insert is found,
 			//create a new node and draw it
 			if (cur.right == null) {
-				cur.right = new Node (s);
+				cur.right = new Node (num);
 				cur.right.prev = cur;
 				cur.right.depth = cur.right.prev.depth + 1;
 				cur.right.x = cur.x + 0.25 / Math.pow(2, cur.right.depth);
@@ -51,15 +49,15 @@ public class BST {
 				//search again for the correct location
 				//set previous node to cur, and new node to search
 				//as cur.
-				insertHelper (s, cur.right, cur);
+				insertHelper (num, cur.right, cur);
 			}
 
-		} else { // s < cur.key, go left
+		} else { // num < cur.key, go left
 			BSTAnimations.printToTop("GOING LEFT");
 			//if correct location to insert is found,
 			//create a new node and draw it
 			if (cur.left == null) {
-				cur.left = new Node (s);
+				cur.left = new Node (num);
 				cur.left.prev = cur;
 				cur.left.depth = cur.left.prev.depth + 1;
 				cur.left.x = cur.x - 0.25 / Math.pow(2, cur.left.depth);
@@ -70,17 +68,15 @@ public class BST {
 				//search again for the correct location
 				//set previous node to cur, and new node to search
 				//as cur.
-				insertHelper (s, cur.left, cur); 
+				insertHelper (num, cur.left, cur); 
 			}
 		}
 	}
 
-	public void delete (String s) {
-		if (s.isEmpty()) {
-			BSTAnimations.printToTop("ERROR");
-		} else {
+	public void delete (Integer num) {
+		if (num != null) {
 			//find node to delete
-			Node toDelete = findHelper(s, root);
+			Node toDelete = findHelper(num, root);
 			//use hibbard deletion
 			if (toDelete != null) {
 				hibbardDeletion (toDelete, toDelete.prev);
@@ -88,27 +84,25 @@ public class BST {
 		}
 	}
 
-	public void find (String s) {
-		if (s.isEmpty()) {
-			BSTAnimations.printToTop("ERROR");
-		} else {
-			Node toDelete = findHelper(s, root);
+	public void find (Integer num) {
+		if (num != null) {
+			Node toDelete = findHelper(num, root);
 		}
 	}
 	
 	//finds a node in the tree
 	//returns the position of the node
 	//if not found, returns null
-	private Node findHelper(String key, Node cur) {
+	private Node findHelper(Integer num, Node cur) {
 		if (cur == null) {
 			BSTAnimations.printToTop("NOT FOUND");
 			return null;
-		} else if (key.compareTo(cur.key) < 0) {
+		} else if (num < cur.key) {
 			BSTAnimations.printToTop("GOING LEFT");
-			return findHelper (key, cur.left);
-		} else if (key.compareTo(cur.key) > 0) {
+			return findHelper (num, cur.left);
+		} else if (num > cur.key) {
 			BSTAnimations.printToTop("GOING RIGHT");
-			return findHelper (key, cur.right);
+			return findHelper (num, cur.right);
 		} else {
 			BSTAnimations.printToTop("FOUND IT!");
 			return cur;

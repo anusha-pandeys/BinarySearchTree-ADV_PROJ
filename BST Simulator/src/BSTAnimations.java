@@ -12,7 +12,7 @@ public class BSTAnimations {
 		StdDraw.filledCircle(n.x, n.y, R);
 		
 		StdDraw.setPenColor(StdDraw.BLACK);
-		StdDraw.text(n.x, n.y, n.key);
+		StdDraw.text(n.x, n.y, Integer.toString(n.key));
 		StdDraw.pause(500);
 	}
 	
@@ -24,14 +24,14 @@ public class BSTAnimations {
 		StdDraw.filledCircle(n.x, n.y, R);
 		
 		StdDraw.setPenColor(StdDraw.BLACK);
-		StdDraw.text(n.x, n.y, n.key);
+		StdDraw.text(n.x, n.y, Integer.toString(n.key));
 	}
 	
 	public static void printToTop(String text) {
 		topMessage.changeText(text, StdDraw.WHITE);
-		StdDraw.pause(1500);
+		StdDraw.pause(1000);
 		topMessage.changeText("", StdDraw.WHITE);
-		StdDraw.pause(500);
+		StdDraw.pause(50);
 	}
 	
 	public static void drawNode(Node n) {
@@ -39,7 +39,7 @@ public class BSTAnimations {
 		StdDraw.filledCircle(n.x, n.y, R);
 		
 		StdDraw.setPenColor(StdDraw.BLACK);
-		StdDraw.text(n.x, n.y, n.key);
+		StdDraw.text(n.x, n.y, Integer.toString(n.key));
 		
 	}
 	

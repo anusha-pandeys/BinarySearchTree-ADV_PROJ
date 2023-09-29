@@ -46,8 +46,9 @@ public class Button {
 	}
 	
 	// returns any typed data if the mouse is clicked (stops collecting data when enter is pressed)
-	public String getData() {
+	public Integer getData() {
 		if (isClicked()) {	// if the button is pressed (to input data)
+			Integer num = null;
 			String input = "";
 			while (!StdDraw.isKeyPressed(ENTER)) {	// wait until enter key is pressed
 				if (StdDraw.hasNextKeyTyped()) {	// if another key is pressed
@@ -58,16 +59,25 @@ public class Button {
 						input += newKey;	// otherwise, add it to the input string
 					}
 				}
-				StdDraw.pause(150);	// to keep the screen from constantly refreshing - makes text look almost blurry
 				
+				StdDraw.pause(100);	// to keep the screen from constantly refreshing - makes text look almost blurry
 				// display the current input on the screen
 				BSTAnimations.print(input);
+				
+				
+			}
+			
+			try {
+				num = Integer.parseInt(input);
+			} catch (NumberFormatException e) {	
+				if (num != null) BSTAnimations.printToTop ("ENTER A NUMBER");
+				return null;
 			}
 			
 			// erase what you typed
 			BSTAnimations.print("");
 			
-			return input;
+			return num;
 		}
 		return null;
 	}
