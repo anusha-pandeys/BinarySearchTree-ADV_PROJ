@@ -5,7 +5,8 @@ public class BSTAnimations {
 	
 	private static Button topMessage = new Button(WIDTH / 2 + PANEL_WIDTH, BSTSimulator.Y_SCALE * 15.0 / 16, WIDTH / 8, BSTSimulator.Y_SCALE / 8, "Welcome!"); 
 	private final static double R = 0.04;
-	private final static double CIRCLE_EDGE = Math.sqrt(0.2) * R + 0.015;
+	private final static double CIRCLE_EDGE = R / Math.sqrt(2);
+	//private final static double CIRCLE_EDGE_OLD = Math.sqrt(0.2) * R + 0.015;
 	private final static double TEXT_SIZE = 16 / BSTSimulator.CANVAS_HEIGHT;
 	
 	
@@ -17,7 +18,10 @@ public class BSTAnimations {
 		double depth = depth(n);
 		double maxWidth = Math.pow(2, depth - 1);
 		double dy = HEIGHT/9;
-		double dx = (WIDTH * 7.0 /8) /maxWidth;
+		double dx = 0.15;
+		if (maxWidth/2 * dx > PANEL_WIDTH) {
+			dx = (WIDTH * 15.0 /16) /maxWidth;
+		}
 		drawTreeHelper (n, WIDTH/2 + PANEL_WIDTH, HEIGHT - dy, dx, dy);
 	}
 	
@@ -50,6 +54,13 @@ public class BSTAnimations {
 	
 	private static void drawLineToParent(Node n) {
 		StdDraw.setPenColor(StdDraw.BLUE);
+//		if (n == n.prev.right) {
+//			StdDraw.line(n.prev.x + CIRCLE_EDGE, n.prev.y - CIRCLE_EDGE, n.x - CIRCLE_EDGE, n.y + CIRCLE_EDGE);
+//		} else {
+//			StdDraw.line(n.prev.x - CIRCLE_EDGE, n.prev.y - CIRCLE_EDGE, n.x + CIRCLE_EDGE, n.y + CIRCLE_EDGE);
+//		}
+		
+		
 		if (n == n.prev.right) {
 			StdDraw.line(n.prev.x + CIRCLE_EDGE, n.prev.y - CIRCLE_EDGE, n.x - CIRCLE_EDGE, n.y + CIRCLE_EDGE);
 		} else {
