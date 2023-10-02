@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class BST {
 		
 	private Node root;
@@ -26,6 +28,12 @@ public class BST {
 		}	
 	}
 
+	public void insert(ArrayList<Integer> nums) {
+		for (Integer num : nums) {
+			insert(num);
+		}
+	}
+	
 	private void insertHelper(Integer num, Node cur, Node parent) {
 		if (root == null) { //empty tree
 			root = new Node(num);
@@ -173,7 +181,7 @@ public class BST {
 	
 	public void inOrderPrint () {
 		if (root == null) {
-			BSTAnimations.printToTop("BST IS EMPTY");
+			BSTAnimations.print("BST IS EMPTY");
 		} else {
 			inOrderPrintHelper("in order: ", root);
 		}
@@ -198,14 +206,13 @@ public class BST {
 		return s;
 	}
 
-	
 	public void postOrderPrint() {
 		String postOrder = postOrderPrintHelper("", root);
 		
 		postOrder = checkIfTextEmpty(postOrder);
 		
 		// print to the screen
-		BSTAnimations.printToTop("post order: " + postOrder);
+		BSTAnimations.print("post order: " + postOrder);
 	}
 	
 	private String postOrderPrintHelper(String s, Node cur) {
@@ -225,14 +232,13 @@ public class BST {
 		return s;
 	}
 
-	
 	public void preOrderPrint() {
 		String preOrder = preOrderPrintHelper("", root);
 		
 		preOrder = checkIfTextEmpty(preOrder);
 		
 		// print to the screen
-		BSTAnimations.printToTop("pre order: " + preOrder);
+		BSTAnimations.print("pre order: " + preOrder);
 		
 	}
 

@@ -1,5 +1,5 @@
 public class BSTAnimations {
-	private static Button topMessage = new Button(BSTSimulator.X_SCALE / 2, BSTSimulator.Y_SCALE * 15 / 16, BSTSimulator.X_SCALE / 8, BSTSimulator.Y_SCALE / 8, "Welcome!"); 
+	private static Button topMessage = new Button(BSTSimulator.X_SCALE / 2, BSTSimulator.Y_SCALE * 15 / 16, BSTSimulator.X_SCALE * 6 / 8, BSTSimulator.Y_SCALE / 8, "Welcome!"); 
 	private final static double R = 0.07;
 	private final static double CIRCLE_EDGE = Math.sqrt(0.2) * R + 0.015;
 	private final static double TEXT_SIZE = 16 / BSTSimulator.CANVAS_HEIGHT;
@@ -68,16 +68,16 @@ public class BSTAnimations {
 	public static void print(String s) {
 		// "cover up" previous text
 		StdDraw.setPenColor(StdDraw.WHITE);
-		StdDraw.filledRectangle(BSTSimulator.X_SCALE / 16, BSTSimulator.Y_SCALE / 16, BSTSimulator.X_SCALE / 16, BSTSimulator.Y_SCALE / 16);
+		StdDraw.filledRectangle(BSTSimulator.X_SCALE / 2, BSTSimulator.Y_SCALE / 16, BSTSimulator.X_SCALE / 16, BSTSimulator.Y_SCALE / 16);
 		
 		// draw new line
 		StdDraw.setPenRadius(0.004);
 		StdDraw.setPenColor();
-		StdDraw.line(0, BSTSimulator.Y_SCALE / 16 - TEXT_SIZE, BSTSimulator.X_SCALE / 8, BSTSimulator.Y_SCALE / 16 - TEXT_SIZE);
+		StdDraw.line(BSTSimulator.X_SCALE * 7 / 16, BSTSimulator.Y_SCALE / 16 - TEXT_SIZE, BSTSimulator.X_SCALE * 9 / 16, BSTSimulator.Y_SCALE / 16 - TEXT_SIZE);
 		StdDraw.setPenRadius();
 		
 		// display new text
-		StdDraw.text(BSTSimulator.X_SCALE / 16, BSTSimulator.Y_SCALE / 16, s);
+		StdDraw.text(BSTSimulator.X_SCALE / 2, BSTSimulator.Y_SCALE / 16, s);
 	}
 
 }

@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.util.ArrayList;
 
 /**
  * 
@@ -9,8 +10,8 @@ import java.awt.Color;
 
 public class BSTSimulator {
 	// makes the canvas size 90% the size of the school laptop screens
-	public static final double CANVAS_WIDTH = 1366 * 0.9;
-	public static final double CANVAS_HEIGHT = 768 * 0.9;
+	public static final double CANVAS_WIDTH = 1366 * 0.85;
+	public static final double CANVAS_HEIGHT = 768 * 0.85;
 	public static final double X_SCALE = CANVAS_WIDTH / CANVAS_HEIGHT;
 	public static final double Y_SCALE = 1;
 	private static final Color buttonColor = StdDraw.PINK;
@@ -31,9 +32,10 @@ public class BSTSimulator {
 	}
 	
 	// sets up the beginning of the BST simulator
-	public static void startPage() {		
+	public static void startPage() {
 		// make BST
 		BST bst = new BST();
+		BSTAnimations.print("");
 		
 		// coordinates and dimensions of the buttons
 		double x = X_SCALE / 16;
@@ -45,39 +47,43 @@ public class BSTSimulator {
 		// make "insert node" button
 		Button insert = new Button(x, y, width, height, "Insert", buttonColor);
 		
+		// make "input file" button
+		Button inputFile = new Button(x, y - dy, width, height, "Read from file", buttonColor);
+		
 		// make "delete node" button
-		Button delete = new Button(x, y - dy, width, height, "Delete", buttonColor);
+		Button delete = new Button(x, y - 2 * dy, width, height, "Delete", buttonColor);
 		
 		// make "find node" button
-		Button find = new Button(x, y - 2 * dy, width, height, "Find", buttonColor);
+		Button find = new Button(x, y - 3 * dy, width, height, "Find", buttonColor);
 		
 		// make "pre-order print" button
-		Button clear = new Button(x, y - 3 * dy, width, height, "Clear", buttonColor);
+		Button clear = new Button(x, y - 4 * dy, width, height, "Clear", buttonColor);
 		
 		// make "in-order print" button
-		Button preOrderPrint = new Button(x, y - 4 * dy, width, height, "Pre-order", buttonColor);
+		Button preOrderPrint = new Button(x, y - 5 * dy, width, height, "Pre-order", buttonColor);
 		
 		// make "post-order print" button
-		Button inOrderPrint = new Button(x, y - 5 * dy, width, height, "In-order", buttonColor);
+		Button inOrderPrint = new Button(x, y - 6 * dy, width, height, "In-order", buttonColor);
 		
 		// make "clear" button
-		Button postOrderPrint = new Button(x, y - 6 * dy, width, height, "Post-order", buttonColor);
-		
-		// make area to type
-		BSTAnimations.print("");
+		Button postOrderPrint = new Button(x, y - 7 * dy, width, height, "Post-order", buttonColor);
 		
 		// waits to collect data & sends collected info to BST
 		while (true) {
 			// check to see if insert has been pressed
-			Integer insertData = insert.getData();
+			Integer insertData = insert.getIntData();
 			if (insertData != null) bst.insert(insertData);
 			
+			// check to see if file has been given
+			ArrayList<Integer> fileData = inputFile.readFile();
+			if (fileData != null) bst.insert(fileData);
+			
 			// check to see if delete has been pressed
-			Integer deleteData = delete.getData();
+			Integer deleteData = delete.getIntData();
 			if (deleteData != null) bst.delete(deleteData);
 			
 			// check to see if find has been pressed
-			Integer findData = find.getData();
+			Integer findData = find.getIntData();
 			if (findData != null) bst.find(findData);
 			
 			// check to see if pre-order print has been pressed
