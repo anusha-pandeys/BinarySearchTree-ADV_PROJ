@@ -151,16 +151,16 @@ public class BSTAnimations {
 	public static void print(String s) {
 		// "cover up" previous text
 		StdDraw.setPenColor(StdDraw.WHITE);
-		StdDraw.filledRectangle(WIDTH / 16, HEIGHT / 16, WIDTH / 16, HEIGHT / 16);
+		StdDraw.filledRectangle(WIDTH /2 + PANEL_WIDTH, HEIGHT / 16, WIDTH / 16, HEIGHT / 16);
 		
 		// draw new line
 		StdDraw.setPenRadius(0.004);
 		StdDraw.setPenColor();
-		StdDraw.line(0, HEIGHT / 16 - TEXT_SIZE, WIDTH / 8, HEIGHT / 16 - TEXT_SIZE);
+		StdDraw.line(WIDTH /2 + PANEL_WIDTH - 1.0/8 , HEIGHT / 16 - TEXT_SIZE, WIDTH /2 + PANEL_WIDTH + 1.0/8, HEIGHT / 16 - TEXT_SIZE);
 		StdDraw.setPenRadius();
 		
 		// display new text
-		StdDraw.text(WIDTH / 16, HEIGHT / 16, s);
+		StdDraw.text(WIDTH /2 + PANEL_WIDTH, HEIGHT / 16, s);
 	}
 
 }
