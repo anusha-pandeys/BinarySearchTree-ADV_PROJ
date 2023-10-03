@@ -3,7 +3,8 @@ public class BSTAnimations {
 	public static final double WIDTH = BSTSimulator.X_SCALE - PANEL_WIDTH;
 	public static final double HEIGHT = 1 - (3.0/32);
 	
-	private static Button topMessage = new Button(WIDTH / 2 + PANEL_WIDTH, BSTSimulator.Y_SCALE * 15.0 / 16, WIDTH - PANEL_WIDTH, BSTSimulator.Y_SCALE / 8, "Welcome!"); 
+
+	private static Button topMessage = new Button(WIDTH / 2 + PANEL_WIDTH, BSTSimulator.Y_SCALE * 15.0 / 16, WIDTH / 8 + 1.0/4, BSTSimulator.Y_SCALE / 8, "Welcome!"); 
 	private final static double R = 0.04;
 	private final static double CIRCLE_EDGE = R / Math.sqrt(2);
 	//private final static double CIRCLE_EDGE_OLD = Math.sqrt(0.2) * R + 0.015;
@@ -15,34 +16,56 @@ public class BSTAnimations {
 		StdDraw.filledRectangle(WIDTH/2 + PANEL_WIDTH, HEIGHT/2, WIDTH/2, HEIGHT/2);
 		StdDraw.setPenColor(StdDraw.BLACK);
 		
-		double depth = depth(n);
-		double maxWidth = Math.pow(2, depth - 1);
-		double dy = HEIGHT/9;
-		double dx = 0.15;
-		if (maxWidth/2 * dx > PANEL_WIDTH) {
-			dx = (WIDTH * 15.0 /16) /maxWidth;
-		}
-		drawTreeHelper (n, WIDTH/2 + PANEL_WIDTH, HEIGHT - dy, dx, dy);
+//		double depth = depth(n);
+//		double maxWidth = Math.pow(2, depth - 1);
+		double dy = HEIGHT/7;
+//		double dx = 0.15;
+//		if (maxWidth/2 * dx > PANEL_WIDTH) {
+//			dx = (WIDTH * 15.0 /16) /maxWidth;
+//		}
+		drawTreeHelper (n, HEIGHT - dy, dy, PANEL_WIDTH, PANEL_WIDTH + WIDTH);
 	}
 	
-	private static void drawTreeHelper (Node n, double x, double y, double dx, double dy) {
+	private static void drawTreeHelper (Node n, double y, double dy, double lowerW, double upperW) {
 		if (n == null) {
 			return;
 		} 
-		n.x = x;
+		
+		n.x = (upperW - lowerW) / 2 + lowerW;
 		n.y = y;
 		
 		if (n.prev == null) {
 			drawNode(n);
 		} else {
-			drawNode(n);
 			drawLineToParent(n);
+			drawNode(n);
+			
 		}
-		drawTreeHelper(n.left, x - dx, y - dy, dx, dy);
-		drawTreeHelper(n.right, x + dx, y - dy, dx, dy);
+		drawTreeHelper(n.left, y - dy, dy, lowerW, n.x);
+		drawTreeHelper(n.right, y - dy, dy, n.x, upperW);
 		
 	}
 	
+	
+//	private static void drawTreeHelper (Node n, double x, double y, double dx, double dy) {
+//		if (n == null) {
+//			return;
+//		} 
+//		n.x = x;
+//		n.y = y;
+//		
+//		if (n.prev == null) {
+//			drawNode(n);
+//		} else {
+//			drawLineToParent(n);
+//			drawNode(n);
+//			
+//		}
+//		drawTreeHelper(n.left, x - dx, y - dy, dx, dy);
+//		drawTreeHelper(n.right, x + dx, y - dy, dx, dy);
+//		
+//	}
+//	
 	private static void drawNode (Node n) {
 		StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);
 		StdDraw.filledCircle(n.x, n.y, R);
@@ -53,7 +76,7 @@ public class BSTAnimations {
 	}
 	
 	private static void drawLineToParent(Node n) {
-		StdDraw.setPenColor(StdDraw.BLUE);
+		StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);
 //		if (n == n.prev.right) {
 //			StdDraw.line(n.prev.x + CIRCLE_EDGE, n.prev.y - CIRCLE_EDGE, n.x - CIRCLE_EDGE, n.y + CIRCLE_EDGE);
 //		} else {
@@ -61,11 +84,13 @@ public class BSTAnimations {
 //		}
 		
 		
-		if (n == n.prev.right) {
-			StdDraw.line(n.prev.x + CIRCLE_EDGE, n.prev.y - CIRCLE_EDGE, n.x - CIRCLE_EDGE, n.y + CIRCLE_EDGE);
-		} else {
-			StdDraw.line(n.prev.x - CIRCLE_EDGE, n.prev.y - CIRCLE_EDGE, n.x + CIRCLE_EDGE, n.y + CIRCLE_EDGE);
-		}
+//		if (n == n.prev.right) {
+//			StdDraw.line(n.prev.x + CIRCLE_EDGE, n.prev.y - CIRCLE_EDGE, n.x - CIRCLE_EDGE, n.y + CIRCLE_EDGE);
+//		} else {
+//			StdDraw.line(n.prev.x - CIRCLE_EDGE, n.prev.y - CIRCLE_EDGE, n.x + CIRCLE_EDGE, n.y + CIRCLE_EDGE);
+//		}
+		
+		StdDraw.line(n.prev.x, n.prev.y, n.x, n.y);
 	}
 	
 	private static double depth(Node cur) {
