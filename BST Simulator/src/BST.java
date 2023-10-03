@@ -9,18 +9,19 @@ public class BST {
 	}
 	
 	public void clear() {
-		clearHelper (root);
+//		clearHelper (root);
+		root = null;
 		BSTAnimations.drawTree(root);
 	}
 	
-	private void clearHelper (Node cur) {
-		if (cur == null) {
-			return;
-		}
-		clearHelper (cur.left);
-		clearHelper(cur.right);
-		hibbardDeletion(cur, cur.prev);
-	}
+//	private void clearHelper (Node cur) {
+//		if (cur == null) {
+//			return;
+//		}
+//		clearHelper (cur.left);
+//		clearHelper(cur.right);
+//		hibbardDeletion(cur, cur.prev);
+//	}
 	
 	public void insert(Integer n) {
 		if (n != null) {
@@ -38,12 +39,15 @@ public class BST {
 	private void insertHelper(Integer num, Node cur, Node parent) {
 		if (root == null) { //empty tree
 			root = new Node(num);
-//			BSTAnimations.drawNode(root);
 			return;
 		} else if (cur.key == num) { //no duplicates allowed
+			BSTAnimations.startHighlight(cur);
+			BSTAnimations.stopHighlight(cur);
 			BSTAnimations.printToTop("NO DUPLICATES");
 		} else if (cur.key < num) { //num > cur.key, go right
-			BSTAnimations.printToTop("GOING RIGHT");
+			//BSTAnimations.printToTop("GOING RIGHT");
+			BSTAnimations.startHighlight(cur);
+			BSTAnimations.stopHighlight(cur);
 			//if correct location to insert is found,
 			//create a new node and draw it
 			if (cur.right == null) {
@@ -52,8 +56,6 @@ public class BST {
 				cur.right.depth = cur.right.prev.depth + 1;
 				cur.right.x = cur.x + 0.25 / Math.pow(2, cur.right.depth);
 				cur.right.y = cur.y - 0.15;
-//				BSTAnimations.drawNode(cur.right);
-//				BSTAnimations.drawLine (cur, cur.right);
 			} else {
 				//search again for the correct location
 				//set previous node to cur, and new node to search
@@ -62,7 +64,9 @@ public class BST {
 			}
 
 		} else { // num < cur.key, go left
-			BSTAnimations.printToTop("GOING LEFT");
+			//BSTAnimations.printToTop("GOING LEFT");
+			BSTAnimations.startHighlight(cur);
+			BSTAnimations.stopHighlight(cur);
 			//if correct location to insert is found,
 			//create a new node and draw it
 			if (cur.left == null) {
@@ -71,8 +75,6 @@ public class BST {
 				cur.left.depth = cur.left.prev.depth + 1;
 				cur.left.x = cur.x - 0.25 / Math.pow(2, cur.left.depth);
 				cur.left.y = cur.y - 0.15;
-//				BSTAnimations.drawNode(cur.left);
-//				BSTAnimations.drawLine (cur, cur.left); 
 			} else {
 				//search again for the correct location
 				//set previous node to cur, and new node to search
@@ -107,7 +109,10 @@ public class BST {
 		if (cur == null) {
 			BSTAnimations.printToTop("NOT FOUND");
 			return null;
-		} else if (num < cur.key) {
+		} 
+		BSTAnimations.startHighlight(cur);
+		BSTAnimations.stopHighlight(cur);
+		if (num < cur.key) {
 			BSTAnimations.printToTop("GOING LEFT");
 			return findHelper (num, cur.left);
 		} else if (num > cur.key) {
@@ -123,7 +128,6 @@ public class BST {
 	private void hibbardDeletion (Node cur, Node parent) {
 		//if cur has no children, just delete the node and remove its edge
 		if (cur.left == null && cur.right == null) {
-			//BSTAnimations.deleteNode (parent, cur);
 			//if the node has a parent, remove the edge between them.
 			if (parent != null) {
 				if (parent.left == cur) {
@@ -138,20 +142,34 @@ public class BST {
 		} else if (cur.left == null) {
 			//if the node has a right child, move up the right child
 			
-			//BSTAnimations.deleteNode (parent, cur);
-			cur = cur.right;
+			if (root == cur) {
+				root = cur.right;
+			} else {
+				if (parent.left == cur) {
+					parent.left = cur.right;
+				} else {
+					parent.right = cur.right;
+				}
+				cur.right.prev = parent;
+			}
+			
 			
 		} else if (cur.right == null) {
 			//if the node has a left child, move up the left child
-			
-			//BSTAnimations.deleteNode (parent, cur);
-			cur = cur.left;
+			if (root == cur) {
+				root = cur.left;
+			} else {
+				if (parent.left == cur) {
+					parent.left = cur.left;
+				} else {
+					parent.right = cur.left;
+				}
+				cur.left.prev = parent;
+			}
 		} else {
 			//if the node has two children...
 			
 			//delete the drawing of the node and its edge to its parent
-			
-			//BSTAnimations.deleteNode (parent, cur);
 			
 			//find the minimum node as the successor node
 			Node min = cur.right;
@@ -162,8 +180,10 @@ public class BST {
 			}
 			
 			//replace the value of cur with min
+			if (root == cur) {
+				root.key = min.key;
+			}
 			cur.key = min.key;
-			
 			//remove the drawing of min
 			hibbardDeletion(min, minParent);
 			
