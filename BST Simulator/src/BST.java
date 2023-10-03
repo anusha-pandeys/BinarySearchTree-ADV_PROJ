@@ -211,12 +211,11 @@ public class BST {
 	}
 
 	public void postOrderPrint() {
-		String postOrder = postOrderPrintHelper("", root);
-		
-		postOrder = checkIfTextEmpty(postOrder);
-		
-		// print to the screen
-		BSTAnimations.print("post order: " + postOrder);
+		if (root == null) {
+			BSTAnimations.print("BST IS EMPTY");
+		} else {
+			BSTAnimations.print(postOrderPrintHelper("post order: ", root));
+		}
 	}
 	
 	private String postOrderPrintHelper(String s, Node cur) {
@@ -231,7 +230,10 @@ public class BST {
 		s = postOrderPrintHelper(s, cur.right);
 		
 		// append current node
-		s += cur.key + ", ";
+		s += cur.key + " ";
+		
+		BSTAnimations.startHighlight(cur);
+		BSTAnimations.stopHighlight(cur);
 		
 		return s;
 	}
@@ -249,18 +251,17 @@ public class BST {
 			return s;
 		}
 		
-		BSTAnimations.startHighlight(cur);
-		
 		// append current node
-		s += cur.key + ", ";
+		s += cur.key + " ";
+		
+		BSTAnimations.startHighlight(cur);
+		BSTAnimations.stopHighlight(cur);
 		
 		// call left tree
 		s = preOrderPrintHelper(s, cur.left);
 		
 		// call right tree
 		s = preOrderPrintHelper(s, cur.right);
-		
-		BSTAnimations.stopHighlight(cur);
 		
 		return s;
 	}
