@@ -1,29 +1,19 @@
 public class BSTAnimations {
-	public static final double PANEL_WIDTH = 0.25;
+	private final static double R = 0.05;
+	public static final double PANEL_WIDTH = BSTSimulator.X_SCALE/8 + R;
 	public static final double WIDTH = BSTSimulator.X_SCALE - PANEL_WIDTH;
 	public static final double HEIGHT = 1 - (3.0/32);
-	
-
 	private static Button topMessage = new Button(WIDTH / 2 + PANEL_WIDTH, BSTSimulator.Y_SCALE * 15.0 / 16, WIDTH / 8 + 1.0/4, BSTSimulator.Y_SCALE / 8, "Welcome!"); 
-	private final static double R = 0.04;
 	private final static double CIRCLE_EDGE = R / Math.sqrt(2);
-	//private final static double CIRCLE_EDGE_OLD = Math.sqrt(0.2) * R + 0.015;
 	private final static double TEXT_SIZE = 16 / BSTSimulator.CANVAS_HEIGHT;
 	
 	
 	public static void drawTree(Node n) {
 		StdDraw.setPenColor(StdDraw.WHITE);
-		StdDraw.filledRectangle(WIDTH/2 + PANEL_WIDTH, HEIGHT/2, WIDTH/2, HEIGHT/2);
+		StdDraw.filledRectangle(WIDTH/2 + PANEL_WIDTH - R, HEIGHT/2, WIDTH/2, HEIGHT/2);
 		StdDraw.setPenColor(StdDraw.BLACK);
 		
 		double dy = HEIGHT/7;
-//		double depth = depth(n);
-//		double maxWidth = Math.pow(2, depth - 1);
-		
-//		double dx = 0.15;
-//		if (maxWidth/2 * dx > PANEL_WIDTH) {
-//			dx = (WIDTH * 15.0 /16) /maxWidth;
-//		}
 		drawTreeHelper (n, HEIGHT - dy, dy, PANEL_WIDTH, PANEL_WIDTH + WIDTH);
 	}
 	
@@ -40,33 +30,12 @@ public class BSTAnimations {
 		} else {
 			drawLineToParent(n);
 			drawNode(n);
-			//
 		}
 		drawTreeHelper(n.left, y - dy, dy, lowerW, n.x);
 		drawTreeHelper(n.right, y - dy, dy, n.x, upperW);
 		
 	}
 	
-	
-//	private static void drawTreeHelper (Node n, double x, double y, double dx, double dy) {
-//		if (n == null) {
-//			return;
-//		} 
-//		n.x = x;
-//		n.y = y;
-//		
-//		if (n.prev == null) {
-//			drawNode(n);
-//		} else {
-//			drawLineToParent(n);
-//			drawNode(n);
-//			
-//		}
-//		drawTreeHelper(n.left, x - dx, y - dy, dx, dy);
-//		drawTreeHelper(n.right, x + dx, y - dy, dx, dy);
-//		
-//	}
-//	
 	private static void drawNode (Node n) {
 		StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);
 		StdDraw.filledCircle(n.x, n.y, R);
@@ -78,19 +47,6 @@ public class BSTAnimations {
 	
 	private static void drawLineToParent(Node n) {
 		StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);
-//		if (n == n.prev.right) {
-//			StdDraw.line(n.prev.x + CIRCLE_EDGE, n.prev.y - CIRCLE_EDGE, n.x - CIRCLE_EDGE, n.y + CIRCLE_EDGE);
-//		} else {
-//			StdDraw.line(n.prev.x - CIRCLE_EDGE, n.prev.y - CIRCLE_EDGE, n.x + CIRCLE_EDGE, n.y + CIRCLE_EDGE);
-//		}
-		
-		
-//		if (n == n.prev.right) {
-//			StdDraw.line(n.prev.x + CIRCLE_EDGE, n.prev.y - CIRCLE_EDGE, n.x - CIRCLE_EDGE, n.y + CIRCLE_EDGE);
-//		} else {
-//			StdDraw.line(n.prev.x - CIRCLE_EDGE, n.prev.y - CIRCLE_EDGE, n.x + CIRCLE_EDGE, n.y + CIRCLE_EDGE);
-//		}
-		
 		StdDraw.line(n.prev.x, n.prev.y, n.x, n.y);
 	}
 	
@@ -138,41 +94,6 @@ public class BSTAnimations {
 		topMessage.changeText("", StdDraw.WHITE);
 		StdDraw.pause(50);
 	}
-	
-///////////////////////////////
-	
-//	public static void drawNode(Node n) {
-//		StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);
-//		StdDraw.filledCircle(n.x, n.y, R);
-//		
-//		StdDraw.setPenColor(StdDraw.BLACK);
-//		StdDraw.text(n.x, n.y, Integer.toString(n.key));
-//		
-//	}
-//	
-//	public static void drawLine(Node parent, Node child) {
-//		StdDraw.setPenColor(StdDraw.BLUE);
-//		if (child == parent.right) {
-//			StdDraw.line(parent.x + CIRCLE_EDGE, parent.y - CIRCLE_EDGE, child.x - CIRCLE_EDGE, child.y + CIRCLE_EDGE);
-//		} else {
-//			StdDraw.line(parent.x - CIRCLE_EDGE, parent.y - CIRCLE_EDGE, child.x + CIRCLE_EDGE, child.y + CIRCLE_EDGE);
-//		}
-//	}
-	
-	public static void deleteNode(Node parent, Node child) {
-		StdDraw.setPenColor(StdDraw.WHITE);
-		StdDraw.filledCircle(child.x, child.y, R + 0.01);
-		if (parent != null) {
-			StdDraw.setPenRadius(0.004);
-			if (child == parent.right) {
-				StdDraw.line(parent.x + CIRCLE_EDGE, parent.y - CIRCLE_EDGE, child.x - CIRCLE_EDGE, child.y + CIRCLE_EDGE);
-			} else {
-				StdDraw.line(parent.x - CIRCLE_EDGE, parent.y - CIRCLE_EDGE, child.x + CIRCLE_EDGE, child.y + CIRCLE_EDGE);
-			}
-		}
-	}
-	
-///////////////////////////////////////////////
 	
 	public static void print(String s) {
 		// "cover up" previous text
