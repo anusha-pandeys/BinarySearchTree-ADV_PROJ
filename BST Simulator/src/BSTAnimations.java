@@ -3,7 +3,7 @@ public class BSTAnimations {
 	public static final double WIDTH = BSTSimulator.X_SCALE - PANEL_WIDTH;
 	public static final double HEIGHT = 1 - (3.0/32);
 	
-	private static Button topMessage = new Button(WIDTH / 2 + PANEL_WIDTH, BSTSimulator.Y_SCALE * 15.0 / 16, WIDTH / 8, BSTSimulator.Y_SCALE / 8, "Welcome!"); 
+	private static Button topMessage = new Button(WIDTH / 2 + PANEL_WIDTH, BSTSimulator.Y_SCALE * 15.0 / 16, WIDTH - PANEL_WIDTH, BSTSimulator.Y_SCALE / 8, "Welcome!"); 
 	private final static double R = 0.04;
 	private final static double CIRCLE_EDGE = R / Math.sqrt(2);
 	//private final static double CIRCLE_EDGE_OLD = Math.sqrt(0.2) * R + 0.015;
@@ -151,7 +151,7 @@ public class BSTAnimations {
 	public static void print(String s) {
 		// "cover up" previous text
 		StdDraw.setPenColor(StdDraw.WHITE);
-		StdDraw.filledRectangle(WIDTH /2 + PANEL_WIDTH, HEIGHT / 16, WIDTH / 16, HEIGHT / 16);
+		StdDraw.filledRectangle(WIDTH / 2 + PANEL_WIDTH, HEIGHT / 16, (WIDTH - PANEL_WIDTH) / 2, HEIGHT / 16);
 		
 		// draw new line
 		StdDraw.setPenRadius(0.004);

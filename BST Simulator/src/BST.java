@@ -186,7 +186,7 @@ public class BST {
 		if (root == null) {
 			BSTAnimations.print("BST IS EMPTY");
 		} else {
-			inOrderPrintHelper("in order: ", root);
+			BSTAnimations.print(inOrderPrintHelper("in order: ", root));
 		}
 	}
 	
@@ -194,13 +194,14 @@ public class BST {
 		if (cur == null) {
 			return s;			
 		}
+		
 		// call left tree
 		s = inOrderPrintHelper(s, cur.left);
-
-		BSTAnimations.startHighlight(cur);
+		
 		// append current node
 		s += cur.key + " ";
-		BSTAnimations.print(s);
+		
+		BSTAnimations.startHighlight(cur);
 		BSTAnimations.stopHighlight(cur);
 		
 		// call right tree
@@ -236,19 +237,19 @@ public class BST {
 	}
 
 	public void preOrderPrint() {
-		String preOrder = preOrderPrintHelper("", root);
-		
-		preOrder = checkIfTextEmpty(preOrder);
-		
-		// print to the screen
-		BSTAnimations.print("pre order: " + preOrder);
-		
+		if (root == null) {
+			BSTAnimations.print("BST IS EMPTY");
+		} else {
+			BSTAnimations.print(preOrderPrintHelper("pre order: ", root));
+		}		
 	}
 
 	private String preOrderPrintHelper(String s, Node cur) {
 		if (cur == null) {
 			return s;
 		}
+		
+		BSTAnimations.startHighlight(cur);
 		
 		// append current node
 		s += cur.key + ", ";
@@ -258,6 +259,8 @@ public class BST {
 		
 		// call right tree
 		s = preOrderPrintHelper(s, cur.right);
+		
+		BSTAnimations.stopHighlight(cur);
 		
 		return s;
 	}
