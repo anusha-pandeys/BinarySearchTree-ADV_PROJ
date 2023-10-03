@@ -42,11 +42,11 @@ public class BST {
 			return;
 		} else if (cur.key == num) { //no duplicates allowed
 			BSTAnimations.startHighlight(cur);
-			BSTAnimations.stopHighlight(cur);
 			BSTAnimations.printToTop("NO DUPLICATES");
+			BSTAnimations.stopHighlight(cur);
 		} else if (cur.key < num) { //num > cur.key, go right
-			//BSTAnimations.printToTop("GOING RIGHT");
 			BSTAnimations.startHighlight(cur);
+			BSTAnimations.printToTop("GOING RIGHT");
 			BSTAnimations.stopHighlight(cur);
 			//if correct location to insert is found,
 			//create a new node and draw it
@@ -64,8 +64,8 @@ public class BST {
 			}
 
 		} else { // num < cur.key, go left
-			//BSTAnimations.printToTop("GOING LEFT");
 			BSTAnimations.startHighlight(cur);
+			BSTAnimations.printToTop("GOING LEFT");
 			BSTAnimations.stopHighlight(cur);
 			//if correct location to insert is found,
 			//create a new node and draw it
@@ -109,17 +109,21 @@ public class BST {
 		if (cur == null) {
 			BSTAnimations.printToTop("NOT FOUND");
 			return null;
-		} 
-		BSTAnimations.startHighlight(cur);
-		BSTAnimations.stopHighlight(cur);
+		}
 		if (num < cur.key) {
+			BSTAnimations.startHighlight(cur);
 			BSTAnimations.printToTop("GOING LEFT");
+			BSTAnimations.stopHighlight(cur);
 			return findHelper (num, cur.left);
 		} else if (num > cur.key) {
+			BSTAnimations.startHighlight(cur);
 			BSTAnimations.printToTop("GOING RIGHT");
+			BSTAnimations.stopHighlight(cur);
 			return findHelper (num, cur.right);
 		} else {
+			BSTAnimations.startHighlight(cur);
 			BSTAnimations.printToTop("FOUND IT!");
+			BSTAnimations.stopHighlight(cur);
 			return cur;
 		}
 	}
@@ -195,7 +199,7 @@ public class BST {
 
 	private String checkIfTextEmpty(String text) {
 		if (text.length() == 0) {
-			text = "binary search tree is empty";
+			text = "bst is empty";
 		} else {
 			text = text.substring(0, text.length() - 2);
 		}

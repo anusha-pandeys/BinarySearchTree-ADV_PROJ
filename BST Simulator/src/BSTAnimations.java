@@ -74,7 +74,7 @@ public class BSTAnimations {
 		
 		StdDraw.setPenColor(StdDraw.BLACK);
 		StdDraw.text(n.x, n.y, Integer.toString(n.key));
-		StdDraw.pause(500);
+		StdDraw.pause(650);
 	}
 	
 	public static void stopHighlight (Node n) {
