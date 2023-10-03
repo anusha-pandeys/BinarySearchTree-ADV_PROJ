@@ -40,7 +40,7 @@ public class BSTAnimations {
 		} else {
 			drawLineToParent(n);
 			drawNode(n);
-			
+			//
 		}
 		drawTreeHelper(n.left, y - dy, dy, lowerW, n.x);
 		drawTreeHelper(n.right, y - dy, dy, n.x, upperW);
