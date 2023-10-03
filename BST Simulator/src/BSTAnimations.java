@@ -16,9 +16,10 @@ public class BSTAnimations {
 		StdDraw.filledRectangle(WIDTH/2 + PANEL_WIDTH, HEIGHT/2, WIDTH/2, HEIGHT/2);
 		StdDraw.setPenColor(StdDraw.BLACK);
 		
+		double dy = HEIGHT/7;
 //		double depth = depth(n);
 //		double maxWidth = Math.pow(2, depth - 1);
-		double dy = HEIGHT/7;
+		
 //		double dx = 0.15;
 //		if (maxWidth/2 * dx > PANEL_WIDTH) {
 //			dx = (WIDTH * 15.0 /16) /maxWidth;
