@@ -23,7 +23,7 @@ public class BSTSimulator {
 	}
 	
 	// creates an appropriate frame
-	public static void createFrame () {
+	public static void createFrame() {
 		StdDraw.setCanvasSize((int) CANVAS_WIDTH, (int) CANVAS_HEIGHT);
 		// scales the canvas to fit the resolution
 		StdDraw.setXscale(0, X_SCALE);

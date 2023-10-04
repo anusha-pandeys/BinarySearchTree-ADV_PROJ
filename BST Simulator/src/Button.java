@@ -65,6 +65,7 @@ public class Button {
 					}
 				}
 				StdDraw.pause(100);	// to keep the screen from constantly refreshing - makes text look almost blurry
+				
 				// display the current input on the screen
 				BSTAnimations.print(input);
 			}
@@ -122,15 +123,14 @@ public class Button {
 						done = true;
 					}
 				}
+				in.close();
 				return values;
 			} catch (FileNotFoundException e) {
 				BSTAnimations.printToTop("FILE NOT FOUND");
+			} catch (IOException e) {
+				// this is here to catch any exception that closing the BufferedReader throws
 			}
-			return null;
-		} 
-//		else {	// if the input is not a CSV file
-//			BSTAnimations.printToTop ("ENTER A CSV FILE PATH (SEPARATE VALUES WITH \", \")");
-//		}
+		}
 		return null;
 	}
 }

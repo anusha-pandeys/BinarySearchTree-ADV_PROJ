@@ -7,7 +7,7 @@ public class Node {
 	double y;
 	int depth;
 	
-	public Node () {
+	public Node() {
 		key = null;
 		left = null;
 		right = null;
@@ -16,7 +16,8 @@ public class Node {
 		x = 0.5;
 		y = 0.7;
     }
-    public Node (Integer num) {
+	
+    public Node(Integer num) {
     	key = num;
 		left = null;
 		right = null;
@@ -25,6 +26,4 @@ public class Node {
 		x = 0.5;
 		y = 0.7;
     }
-
-
 }
