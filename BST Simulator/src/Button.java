@@ -33,8 +33,25 @@ public class Button {
 		changeText(text, color);
 	}
 	
+	public Button(double x, double y, double width, double height, String text, int r, int g, int b) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		
+		changeText(text, r, g, b);
+	}
+	
 	public void changeText(String newText, Color color) {
 		StdDraw.setPenColor(color);
+		StdDraw.filledRectangle(x, y, width/2, height/2);
+		
+		StdDraw.setPenColor(StdDraw.BLACK);
+		StdDraw.text(x, y, newText);
+	}
+	
+	public void changeText(String newText, int r, int g, int b) {
+		StdDraw.setPenColor(r, g, b);
 		StdDraw.filledRectangle(x, y, width/2, height/2);
 		
 		StdDraw.setPenColor(StdDraw.BLACK);

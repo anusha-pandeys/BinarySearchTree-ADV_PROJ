@@ -45,28 +45,28 @@ public class BSTSimulator {
 		double height = Y_SCALE / 8;
 		
 		// make "insert node" button
-		Button insert = new Button(x, y, width, height, "Insert", buttonColor);
+		Button insert = new Button(x, y, width, height, "Insert", 255, 170, 110);
 		
 		// make "input file" button
-		Button inputFile = new Button(x, y - dy, width, height, "Read from file", buttonColor);
+		Button inputFile = new Button(x, y - dy, width, height, "Read from file", 255, 255, 204);
 		
 		// make "delete node" button
-		Button delete = new Button(x, y - 2 * dy, width, height, "Delete", buttonColor);
+		Button delete = new Button(x, y - 2 * dy, width, height, "Delete", 204, 255, 204);
 		
 		// make "find node" button
-		Button find = new Button(x, y - 3 * dy, width, height, "Find", buttonColor);
+		Button find = new Button(x, y - 3 * dy, width, height, "Find", 153, 225, 255);
 		
 		// make "pre-order print" button
-		Button clear = new Button(x, y - 4 * dy, width, height, "Clear", buttonColor);
+		Button clear = new Button(x, y - 4 * dy, width, height, "Clear", 204, 229, 255);
 		
 		// make "in-order print" button
-		Button preOrderPrint = new Button(x, y - 5 * dy, width, height, "Pre-order", buttonColor);
+		Button preOrderPrint = new Button(x, y - 5 * dy, width, height, "Pre-order", 204, 204, 255);
 		
 		// make "post-order print" button
-		Button inOrderPrint = new Button(x, y - 6 * dy, width, height, "In-order", buttonColor);
+		Button inOrderPrint = new Button(x, y - 6 * dy, width, height, "In-order", 229, 204, 255);
 		
 		// make "clear" button
-		Button postOrderPrint = new Button(x, y - 7 * dy, width, height, "Post-order", buttonColor);
+		Button postOrderPrint = new Button(x, y - 7 * dy, width, height, "Post-order", 255, 204, 229);
 		
 		// waits to collect data & sends collected info to BST
 		while (true) {
